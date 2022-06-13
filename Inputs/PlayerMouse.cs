@@ -10,42 +10,44 @@ public class PlayerMouse : MonoBehaviour
     //private new Rigidbody2D rigidbody;
     //private Vector3 Movement;
 
-    public Tilemap map;
-    public PlayerMovement player;
-    private PlayerInput playerInput;
+    public Transform player;
+    public IMoveableMap map;
+    public Transform area;
+    //private PlayerInput playerInput;
     private Vector3 destination;
 
-    private void Awake() {
-        playerInput = new PlayerInput();
-    }
-    public void OnEnable() {
-        playerInput.Enable();
-    }
-    public void OnDisable() {
-        playerInput.Disable();
-    }
+    //private void Awake() {
+    //    playerInput = new PlayerInput();
+    //}
+    //public void OnEnable() {
+    //    playerInput.Enable();
+    //}
+    //public void OnDisable() {
+    //    playerInput.Disable();
+    //}
 
     public void Start() {
         destination = transform.position;
-        playerInput.Player.LeftClick.performed += _ => MouseClick();
+        //playerInput.Player.LeftClick.performed += _ => MouseClick();
     }
 
     public IEnumerator Check() {
         yield return new WaitForSeconds(3f);
-        Debug.Log(player.TempMovement);
+        //Debug.Log(player.TempMovement);
     }
 
     public void MouseClick() {
         if (blockInput) return; // move global
 
-        Vector2 mousePosition = playerInput.Player.MousePosition.ReadValue<Vector2>();
+        //Vector2 mousePosition = playerInput.Player.MousePosition.ReadValue<Vector2>();
+        Vector2 mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-        Vector3Int gridPosition = map.WorldToCell(mousePosition);
-        if (map.HasTile(gridPosition)) {
+        Vector3 gridPosition = map.GetCoordinates(mousePosition);
+        if (map.IsPassablePath(gridPosition)) {
             destination = mousePosition;
             var magnitude = -(transform.position - destination).magnitude;
-            player.TempMovement = (transform.position - destination) / magnitude * speed;
+            player.transform.position = (transform.position - destination) / magnitude * speed;
         }
     }
 
@@ -56,7 +58,7 @@ public class PlayerMouse : MonoBehaviour
             //player.rigidbody.AddForce(Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime));
             //player.Motion(player.TempMovement);
         } else {
-            player.TempMovement = Vector2.zero;
+            //player.TempMovement = Vector2.zero;
         }
     }
 }
