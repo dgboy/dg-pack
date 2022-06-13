@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a03f130c9ea77746b3293a066ea2aeb, type: 3}
+  m_Name: Wood Bow
+  m_EditorClassIdentifier: 
+  itemImage: {fileID: 2125802375569566770, guid: aa8796546a392234c919c3a6bfb2cb86,
+    type: 3}
+  itemName: "\u0414\u0435\u0440\u0435\u0432\u044F\u043D\u043D\u044B\u0439 \u043B\u0443\u043A"
+  itemDescription: "\u042D\u0442\u043E \u0436\u0435 \u041B\u0443\u043A! \u0422\u0435\u043F\u0435\u0440\u044C
+    \u0442\u044B \u043C\u043E\u0436\u0435\u0448\u044C \u0441\u0442\u0440\u0435\u043B\u044F\u0442\u044C. 
+    \u041F\u0440\u043E\u0441\u0442\u043E \u043D\u0430\u0436\u043C\u0438 \u043D\u0430
+    \u043A\u043D\u043E\u043F\u043A\u0443 F"
+  numberHeld: 1
+  unique: 1
+  usable: 1
+  thisEvent:
+    m_PersistentCalls:
+      m_Calls: []
