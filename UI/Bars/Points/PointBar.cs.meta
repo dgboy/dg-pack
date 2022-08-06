@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 27e03e12e4329eb448191c1e2e4af91a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - fullHeart: {fileID: -4430392651179603617, guid: c077c6bb1d757b245b8f38e6b67f5267,
+      type: 3}
+  - halfHeart: {fileID: -3276687688264177478, guid: c077c6bb1d757b245b8f38e6b67f5267,
+      type: 3}
+  - emptyHeart: {fileID: -9053378900703536071, guid: c077c6bb1d757b245b8f38e6b67f5267,
+      type: 3}
+  - heartContainers: {fileID: 11400000, guid: 574739076d1d94247ab2f00421db4070, type: 2}
+  - playerCurrentHealth: {fileID: 11400000, guid: 03ddba860889b104587098272dbda747,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
