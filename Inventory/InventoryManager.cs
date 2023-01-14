@@ -7,7 +7,7 @@ using TMPro;
 namespace InventorySystem {
     public class InventoryManager : MonoBehaviour {
         public PlayerInventory playerInventory;
-        public InventoryItem currentItem;
+        public Item currentItem;
 
         [Header("Inventory Information")]
         [SerializeField] private GameObject blankInventorySlot = null;
@@ -62,7 +62,7 @@ namespace InventorySystem {
             }
         }
 
-        public void SetupDesciptionAndButton(string newDescription, string newItemNameText, bool isButtonUsable, InventoryItem newItem) {
+        public void SetupDesciptionAndButton(string newDescription, string newItemNameText, bool isButtonUsable, Item newItem) {
             currentItem = newItem;
             descriptionText.text = newDescription;
             itemNameText.text = newItemNameText;

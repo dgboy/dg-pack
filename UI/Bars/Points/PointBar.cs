@@ -14,7 +14,9 @@ public class PointBar : MonoBehaviour {
     public Sprite emptyHeart;
     private readonly List<GameObject> pointItems = new();
 
-    private void Init() {
+    public void Init() {
+        content.Clear();
+
         for (int i = 0; i < points.Max / unitFactor; i++) {
             Create();
         }

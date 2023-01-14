@@ -5,26 +5,26 @@ using UnityEngine.UI;
 namespace InventorySystem {
     public class Slot : MonoBehaviour {
         [Header("Variables from the item")]
-        public InventoryItem thisItem;
-        public InventoryManager thisManager;
+        public Item item;
+        public InventoryManager manager;
 
         [Header("UI Stuff to change")]
         [SerializeField] private TextMeshProUGUI itemNumberText = null;
         [SerializeField] private Image itemImage = null;
 
-        public void Setup(InventoryItem newItem, InventoryManager newManager) {
-            thisItem = newItem;
-            thisManager = newManager;
+        public void Setup(Item newItem, InventoryManager newManager) {
+            item = newItem;
+            manager = newManager;
 
-            if (thisItem) {
-                itemImage.sprite = thisItem.itemImage;
-                itemNumberText.text = thisItem.unique ? "" : "" + thisItem.numberHeld;
+            if (item) {
+                itemImage.sprite = item.itemImage;
+                itemNumberText.text = item.unique ? "" : "" + item.numberHeld;
             }
         }
 
         public void ClickOn() {
-            if (thisItem) {
-                thisManager.SetupDesciptionAndButton(thisItem.itemDescription, thisItem.itemName, thisItem.usable, thisItem);
+            if (item) {
+                manager.SetupDesciptionAndButton(item.itemDescription, item.itemName, item.usable, item);
             }
         }
     }

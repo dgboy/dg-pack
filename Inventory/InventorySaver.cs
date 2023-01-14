@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine;
+using InventorySystem;
 
 public class InventorySaver : MonoBehaviour {
     [SerializeField] private PlayerInventory myInventory = null;
@@ -47,9 +48,9 @@ public class InventorySaver : MonoBehaviour {
         string filepath = Application.persistentDataPath + string.Format("/{0}.inv", i);
 
         while (File.Exists(filepath)) {
-            var temp = ScriptableObject.CreateInstance<InventoryItem>();
+            var temp = ScriptableObject.CreateInstance<Item>();
             FileStream file = File.Open(filepath, FileMode.Open);
-            BinaryFormatter binary = new BinaryFormatter();
+            BinaryFormatter binary = new();
             JsonUtility.FromJsonOverwrite((string)binary.Deserialize(file), temp);
             file.Close();
             myInventory.myInventory.Add(temp);
