@@ -1,10 +1,9 @@
 using System;
-using TMPro;
 using UnityEngine;
 
 public class WindowResizer : MonoBehaviour {
     public static event Action<int, int> OnResize;
-    [SerializeField] private TMP_Dropdown windowSize;
+    [SerializeField] private Vector2 windowSize;
     public static float aspectRatio;
     private ScreenOrientation _orientation;
 
@@ -25,8 +24,8 @@ public class WindowResizer : MonoBehaviour {
     }
 
     public void OnChangeWindowSize() {
-        var resolution = GetResolution();
-        var baseH = GetBaseHeight();
+        var resolution = GetResolution("600:400");
+        var baseH = GetBaseHeight(0);
         aspectRatio = resolution.x / (float)resolution.y;
 
         int w = (int)(baseH * aspectRatio);
@@ -40,14 +39,14 @@ public class WindowResizer : MonoBehaviour {
         Debug.Log($"[get] sw: {Screen.width}, sh: {Screen.height}, scrw: {Screen.currentResolution.width}");
     }
 
-    public int GetBaseHeight() => windowSize.value switch {
+    public int GetBaseHeight(int i) => i switch {
         0 => 960,
         1 => 600,
         _ => 360,
     };
 
-    public Vector2Int GetResolution() {
-        string[] resolution = windowSize.options[windowSize.value].text.Split(':');
+    public Vector2Int GetResolution(string text) {
+        string[] resolution = text.Split(':');
         if (resolution.Length == 2) {
             return new(int.Parse(resolution[0]), int.Parse(resolution[1]));
         }

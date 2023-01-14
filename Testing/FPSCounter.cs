@@ -1,53 +1,58 @@
-﻿using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
-public class FPSCounter : MonoBehaviour {
-    private float fps = 60f;
-    float avg = 0f;
+public class FpsCounter : MonoBehaviour {
+    [SerializeField] private int _frameRange = 60;
 
-    [Header("Display On GUI")]
-    public bool ShowGUI = true;
-    public GUIStyle style = new();
-    public Rect rect = new Rect(10, 10, 100, 20);
+    private int[] _fpsBuffer;
+    private int _fpsBufferIndex;
 
-    [Header("Display In Text UI Element")]
-    public Text FPSLabel;
-    //[Header("Customize")]
+    public int AverageFPS { get; private set; }
+    public int HighestPFS { get; private set; }
+    public int LowersFPS { get; private set; }
 
-    void Update() {
-        avg += ((Time.deltaTime / Time.timeScale) - avg) * 0.03f; //run this every frame
-        fps = 1f / avg;
-        //FPS = 1 / Time.unscaledDeltaTime;
+    private void Update() {
+        if (_fpsBuffer == null || _frameRange != _fpsBuffer.Length) {
+            InitializeBuffer();
+        }
 
-        if (FPSLabel) FPSLabel.text = "FPS: " + fps;
+        UpdateBuffer();
+        CalculateFps();
     }
 
-    private void OnGUI() {
-        if (ShowGUI) GUI.Label(rect, "FPS: " + fps.ToString(), style);
+    private void InitializeBuffer() {
+        if (_frameRange <= 0) {
+            _frameRange = 1;
+        }
+
+        _fpsBuffer = new int[_frameRange];
+        _fpsBufferIndex = 0;
     }
 
+    private void UpdateBuffer() {
+        _fpsBuffer[_fpsBufferIndex++] = (int)(1f / Time.unscaledDeltaTime);
+        if (_fpsBufferIndex >= _frameRange) {
+            _fpsBufferIndex = 0;
+        }
+    }
 
-    //public float updateInterval = 0.5F;
-    //private double lastInterval;
-    //private int frames = 0;
-    //private float fps;
-    //void Start() {
-    //    lastInterval = Time.realtimeSinceStartup;
-    //    frames = 0;
-    //}
+    private void CalculateFps() {
+        int sum = 0;
+        int lowest = int.MaxValue;
+        int highest = 0;
+        for (int i = 0; i < _frameRange; i++) {
+            int fps = _fpsBuffer[i];
+            sum += fps;
+            if (fps > highest) {
+                highest = fps;
+            }
 
-    //void OnGUI() {
-    //    GUILayout.Label("" + fps.ToString("f2"));
-    //}
+            if (fps < lowest) {
+                lowest = fps;
+            }
+        }
 
-    //void Update() {
-    //    ++frames;
-    //    float timeNow = Time.realtimeSinceStartup;
-    //    if (timeNow > lastInterval + updateInterval) {
-    //        fps = (float)(frames / (timeNow - lastInterval));
-    //        frames = 0;
-    //        lastInterval = timeNow;
-    //    }
-    //}
+        HighestPFS = highest;
+        LowersFPS = lowest;
+        AverageFPS = sum / _frameRange;
+    }
 }
