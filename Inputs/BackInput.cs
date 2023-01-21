@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace UtilityPack.Inputs {
+namespace Inputs {
     public class BackInput : MonoBehaviour {
         void Start() {
             // Smart Back (WIP)

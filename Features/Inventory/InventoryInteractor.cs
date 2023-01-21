@@ -1,11 +1,10 @@
 ﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace InventorySystem {
     public class InventoryInteractor : MonoBehaviour {
-        public PlayerInventory playerInventory;
-        public Item currentItem;
+        public ItemState playerInventory;
+        public ItemInfo currentItem;
 
         [Header("Inventory Information")]
         [SerializeField] private GameObject blankInventorySlot = null;
@@ -31,36 +30,36 @@ namespace InventorySystem {
         }
 
         void MakeInventorySlots() {
-            if (playerInventory) {
-                for (int i = 0; i < playerInventory.myInventory.Count; i++) {
-                    Debug.Log(playerInventory.myInventory[i]);
-                    if (playerInventory.myInventory[i].numberHeld > 0) {
-                        GameObject temp = Instantiate(
-                            blankInventorySlot,
-                            inventoryPanel.transform.position,
-                            Quaternion.identity
-                        );
+            //if (!playerInventory) return;
 
-                        temp.transform.SetParent(inventoryPanel.transform);
-                        Slot newSlot = temp.GetComponent<Slot>();
+            //for (int i = 0; i < playerInventory.myInventory.Count; i++) {
+            //    Debug.Log(playerInventory.myInventory[i]);
+            //    if (playerInventory.myInventory[i].Capacity > 0) {
+            //        GameObject temp = Instantiate(
+            //            blankInventorySlot,
+            //            inventoryPanel.transform.position,
+            //            Quaternion.identity
+            //        );
 
-                        if (newSlot) {
-                            newSlot.Setup(playerInventory.myInventory[i], this);
-                        }
+            //        temp.transform.SetParent(inventoryPanel.transform);
+            //        ISlot newSlot = temp.GetComponent<ISlot>();
+
+            //        //if (newSlot) {
+            //        //    newSlot.Setup(playerInventory.myInventory[i], this);
+            //        //}
 
 
-                        if (i == 0) {
-                            Button button = temp.GetComponent<Button>();
-                            button.Select();
-                            // var eventSystem = EventSystemManager.currentSystem;
-                            // eventSystem.SetSelectedGameObject(temp, new BaseEventData(eventSystem));
-                        }
-                    }
-                }
-            }
+            //        if (i == 0) {
+            //            Button button = temp.GetComponent<Button>();
+            //            button.Select();
+            //            // var eventSystem = EventSystemManager.currentSystem;
+            //            // eventSystem.SetSelectedGameObject(temp, new BaseEventData(eventSystem));
+            //        }
+            //    }
+            //}
         }
 
-        public void SetupDesciptionAndButton(string newDescription, string newItemNameText, bool isButtonUsable, Item newItem) {
+        public void SetupDesciptionAndButton(string newDescription, string newItemNameText, bool isButtonUsable, ItemInfo newItem) {
             currentItem = newItem;
             descriptionText.text = newDescription;
             itemNameText.text = newItemNameText;
@@ -69,7 +68,7 @@ namespace InventorySystem {
 
         public void UseButtonPressed() {
             if (currentItem) {
-                currentItem.Use();
+                //currentItem.Use();
                 ClearInventorySlots();
                 MakeInventorySlots();
             }

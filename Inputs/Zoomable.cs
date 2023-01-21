@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace UtilityPack.Inputs {
+namespace Inputs {
     // Pinch to zoom
     public class Zoomable : MonoBehaviour, IBeginDragHandler, IDragHandler {
-    #if UNITY_EDITOR || UNITY_STANDALONE
+#if UNITY_EDITOR || UNITY_STANDALONE
         [SerializeField] private PointerEventData.InputButton mouseButton = PointerEventData.InputButton.Right;
-    #endif
+#endif
 
         [SerializeField] private bool useThis = true;
         [SerializeField] private RectTransform _target;
@@ -17,7 +17,7 @@ namespace UtilityPack.Inputs {
         private Vector2 lastPosition;
         public RectTransform Target { get => _target; set => _target = value; }
 
-        
+
         private void Awake() {
             if (useThis && !_target) _target = transform as RectTransform;
         }

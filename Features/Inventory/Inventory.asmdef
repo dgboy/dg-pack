@@ -1,6 +1,6 @@
 {
     "name": "DG-Pack.Inventory",
-    "rootNamespace": "DG-Pack",
+    "rootNamespace": "DGPack",
     "references": [
         "GUID:cfa41e63a065a1a4dbfaf8c8f7a6b7e8",
         "GUID:7d522aa4c9d4a794897c5322c8e4bc07",

@@ -7,10 +7,10 @@ using UnityEngine;
 using InventorySystem;
 
 public class InventorySaver : MonoBehaviour {
-    [SerializeField] private PlayerInventory myInventory = null;
+    //[SerializeField] private PlayerInventory myInventory = null;
 
     private void OnEnable() {
-        myInventory.myInventory.Clear();
+        //myInventory.myInventory.Clear();
         LoadScriptables();
     }
 
@@ -32,15 +32,15 @@ public class InventorySaver : MonoBehaviour {
         ResetScriptables();
 
         string filepath;
-        for (int i = 0; i < myInventory.myInventory.Count; i++) {
-            filepath = Application.persistentDataPath + string.Format("/{0}.inv", i);
+        //for (int i = 0; i < myInventory.myInventory.Count; i++) {
+        //    filepath = Application.persistentDataPath + string.Format("/{0}.inv", i);
 
-            FileStream file = File.Create(filepath);
-            BinaryFormatter binary = new BinaryFormatter();
-            var json = JsonUtility.ToJson(myInventory.myInventory[i]);
-            binary.Serialize(file, json);
-            file.Close();
-        }
+        //    FileStream file = File.Create(filepath);
+        //    BinaryFormatter binary = new BinaryFormatter();
+        //    var json = JsonUtility.ToJson(myInventory.myInventory[i]);
+        //    binary.Serialize(file, json);
+        //    file.Close();
+        //}
     }
 
     public void LoadScriptables() {
@@ -48,12 +48,12 @@ public class InventorySaver : MonoBehaviour {
         string filepath = Application.persistentDataPath + string.Format("/{0}.inv", i);
 
         while (File.Exists(filepath)) {
-            var temp = ScriptableObject.CreateInstance<Item>();
+            var temp = ScriptableObject.CreateInstance<ItemInfo>();
             FileStream file = File.Open(filepath, FileMode.Open);
             BinaryFormatter binary = new();
             JsonUtility.FromJsonOverwrite((string)binary.Deserialize(file), temp);
             file.Close();
-            myInventory.myInventory.Add(temp);
+            //myInventory.myInventory.Add(temp);
 
             i++;
             filepath = Application.persistentDataPath + string.Format("/{0}.inv", i);

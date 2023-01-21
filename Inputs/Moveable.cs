@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace UtilityPack.Inputs {
+namespace Inputs {
     /// <summary>
     /// Drag (Click / Touch)
     /// </summary>
