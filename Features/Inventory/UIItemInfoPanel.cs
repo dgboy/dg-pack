@@ -2,11 +2,11 @@
 using UnityEngine;
 
 namespace InventorySystem {
-    public class InventoryInteractor : MonoBehaviour {
-        public ItemState playerInventory;
+    public class UIItemInfoPanel : MonoBehaviour {
         public ItemInfo currentItem;
+        // public ItemState playerInventory;
 
-        [Header("Inventory Information")]
+        [Header("UI")]
         [SerializeField] private GameObject blankInventorySlot = null;
         [SerializeField] private GameObject inventoryPanel = null;
         [SerializeField] private TextMeshProUGUI itemNameText = null;
@@ -22,11 +22,7 @@ namespace InventorySystem {
         void SetTextAndButton(string description, bool buttonActive) {
             descriptionText.text = description;
             itemNameText.text = description;
-            if (buttonActive) {
-                useButton.SetActive(true);
-            } else {
-                useButton.SetActive(false);
-            }
+            useButton.SetActive(buttonActive);
         }
 
         void MakeInventorySlots() {

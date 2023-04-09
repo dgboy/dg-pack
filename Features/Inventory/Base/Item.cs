@@ -11,6 +11,10 @@ namespace InventorySystem {
             Info = info;
             State = new ItemState();
         }
+        public Item(IItemInfo info, IItemState state) {
+            Info = info;
+            State = state;
+        }
 
         public IItem Clone() {
             var clonedItem = new Item(Info);

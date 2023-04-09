@@ -2,7 +2,7 @@ using System;
 
 namespace InventorySystem {
     public class Slot : ISlot {
-        public bool IsFull => Amount == Capacity;
+        public bool IsFull => !IsEmpty && Amount == Capacity;
         public bool IsEmpty => Item == null;
 
         public IItem Item { get; private set; }
