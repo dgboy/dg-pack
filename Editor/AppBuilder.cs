@@ -15,9 +15,9 @@ namespace DG_Pack.Editor {
             BuildAndroid();
             BuildWebGL();
             BuildWindows();
-            // IOS
-            // Linux
-            // MacOS
+            // IOS🍎
+            // Linux🐧
+            // MacOSⓂ
         }
 
         [MenuItem("Build/🤖 Android")]
