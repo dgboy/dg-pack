@@ -17,14 +17,12 @@ namespace InventorySystem {
             Capacity = capacity;
 
             Slots = new List<ISlot>(capacity);
-            for (int i = 0; i < Capacity; i++) {
+            for (int i = 0; i < Capacity; i++)
                 Slots.Add(new Slot());
-            }
         }
         public SlottedInventory(int capacity, IEnumerable<IItem> items) : this(capacity) {
-            foreach (var item in items) {
+            foreach (var item in items)
                 Slots[item.State.Index].SetItem(item);
-            }
         }
 
 
