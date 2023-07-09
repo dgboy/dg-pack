@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace DG_Pack.Inputs {
-    public class BackInput : MonoBehaviour {
+    public class ExitInputHandler : MonoBehaviour {
         private void Update() {
             if (Input.GetKeyDown(KeyCode.Escape)) 
                 Application.Quit();
