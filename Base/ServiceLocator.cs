@@ -1,4 +1,4 @@
-namespace Core.Services.Base {
+namespace DG_Pack.Base {
     public class ServiceLocator {
         private static ServiceLocator _hub;
         public static ServiceLocator Hub => _hub ??= new ServiceLocator();
