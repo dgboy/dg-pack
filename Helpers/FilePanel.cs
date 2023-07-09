@@ -1,6 +1,5 @@
 //using SFB;
-using System.IO;
-using UnityEngine;
+
 //using UnityEditor;
 
 public static class FilePanel /*: EditorWindow */ {
