@@ -24,7 +24,7 @@ namespace DG_Pack.Services.Log {
         };
 
 
-        public static string ClassName(this object sender) => sender.GetType().Name;
+        public static string Class(this object sender) => sender?.GetType().Name;
         public static string ToColor(this string msg, Dye dye = Dye.None) => $"<color={dye.GetValue()}>{msg}</color>";
     }
 }

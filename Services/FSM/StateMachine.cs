@@ -29,7 +29,7 @@ namespace DG_Pack.Services.FSM {
             Current?.Exit();
 
             var next = _factory.Create<TState>();
-            _logger.LogTransition(this, Current, next);
+            _logger.LogTransition(this, Current.Class(), next.Class());
             Current = next;
 
             return next;

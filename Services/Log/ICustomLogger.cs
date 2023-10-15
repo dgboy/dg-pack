@@ -5,7 +5,7 @@ namespace DG_Pack.Services.Log {
         void LogWarning(string msg, object sender);
         void LogError(string msg, object sender);
 
-        void LogTransition(object sender, object current, object next);
+        void LogTransition(object sender, string current, string next);
         void LogCleanup(object sender, string info = "");
         void LogCheat(object sender, string info);
     }
