@@ -1,45 +1,29 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SmoothCamera : MonoBehaviour
-{
-    public Transform target;
-    public float smoothing = 0.1f;
+namespace DG_Pack.Camera {
+    public class SmoothCamera : MonoBehaviour, ICameraService {
+        public float smoothing = 0.1f;
 
-    public Vector2 minPos;
-    public Vector2 maxPos;
+        public Transform Target { get; set; }
+        // public Vector2 minPos;
+        // public Vector2 maxPos;
 
-    private Animator animator;
 
-    void Start() {
-        animator = GetComponent<Animator>();
-        //transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
-    }
+        private void Start() {
+            //transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
+        }
 
-    void LateUpdate() {
-        if(transform.position != target.position) {
-            Vector3 targetPos = new Vector3(
-                                target.position.x,
-                                target.position.y,
-                                transform.position.z);
+        private void LateUpdate() {
+            if (Vector2.Distance(transform.position, Target.position) > 0f) {
+                Follow();
+            }
+        }
 
+        private void Follow() {
+            var to = new Vector3(Target.position.x, Target.position.y, transform.position.z);
             //targetPos.x = Mathf.Clamp(targetPos.x, minPos.x, maxPos.x);
             //targetPos.y = Mathf.Clamp(targetPos.y, minPos.y, maxPos.y);
-
-            transform.position = Vector3.Lerp(
-                                transform.position, 
-                                targetPos, 
-                                smoothing);
+            transform.position = to;//Vector3.Lerp(transform.position, to, smoothing);
         }
-    }
-
-    public void BeginKick() {
-        animator.SetBool("stagger", true);
-        StartCoroutine(KickCo());
-    }
-
-    public IEnumerator KickCo() {
-        yield return null;
-        animator.SetBool("stagger", false);
     }
 }
