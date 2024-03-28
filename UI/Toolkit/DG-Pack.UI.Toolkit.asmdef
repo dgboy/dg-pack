@@ -1,7 +1,9 @@
 {
-    "name": "DG-Pack.UI.TabMenu",
+    "name": "DG-Pack.UI.Toolkit",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "DG-Pack.Base"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
