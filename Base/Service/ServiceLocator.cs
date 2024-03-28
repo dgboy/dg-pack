@@ -1,4 +1,4 @@
-namespace DG_Pack.Base {
+namespace DG_Pack.Base.Service {
     public class ServiceLocator {
         private static ServiceLocator _hub;
         public static ServiceLocator Hub => _hub ??= new ServiceLocator();
