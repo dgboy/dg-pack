@@ -2,10 +2,10 @@ using System.Collections;
 using UnityEngine;
 
 namespace DG_Pack.Base {
-    public class Cooldown : ICooldown {
-        public Cooldown(MonoBehaviour runner) => _runner = runner;
+    public class CoroutineCooldown : ICooldown {
+        public CoroutineCooldown(ICoroutineRunner runner) => _runner = runner;
 
-        private readonly MonoBehaviour _runner;
+        private readonly ICoroutineRunner _runner;
         private Coroutine _current;
         private float _time;
         public bool IsExpired => _time <= 0;
