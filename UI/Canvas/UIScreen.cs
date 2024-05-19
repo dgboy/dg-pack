@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace UtilityPack.UI {
+namespace DG_Pack.UI.Canvas {
     public class UIScreen : MonoBehaviour {
         public virtual void Show() {
             gameObject.SetActive(true);
