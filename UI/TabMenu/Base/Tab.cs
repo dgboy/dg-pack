@@ -1,9 +1,8 @@
+using DG_Pack.UI.TabMenu.Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using Utility_Pack.UI.TabMenu.Base;
-using Utility_Pack.UI.TabMenu.Data;
 
-namespace Utility_Pack.UI.TabMenu {
+namespace DG_Pack.UI.TabMenu.Base {
     public abstract class Tab : MonoBehaviour, ITab, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler {
         [Header("States")]
         [SerializeField] protected PointerState pointerState = PointerState.Normal;

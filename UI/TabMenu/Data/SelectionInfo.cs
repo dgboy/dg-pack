@@ -1,6 +1,6 @@
 using System;
 
-namespace Utility_Pack.UI.TabMenu.Data {
+namespace DG_Pack.UI.TabMenu.Data {
     [Serializable]
     public class SelectionInfo<T> {
         public T on;

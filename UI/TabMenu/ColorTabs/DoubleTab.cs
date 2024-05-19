@@ -1,8 +1,9 @@
+using DG_Pack.UI.TabMenu.Base;
+using DG_Pack.UI.TabMenu.Data;
 using UnityEngine;
 using UnityEngine.UI;
-using Utility_Pack.UI.TabMenu.Data;
 
-namespace Utility_Pack.UI.TabMenu.ColorTabs {
+namespace DG_Pack.UI.TabMenu.ColorTabs {
     public class DoubleTab : Tab {
         [Header("Display")]
         [SerializeField] private Graphic pointerBox;

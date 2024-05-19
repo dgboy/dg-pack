@@ -1,6 +1,6 @@
 using System;
 
-namespace Utility_Pack.UI.TabMenu.Data {
+namespace DG_Pack.UI.TabMenu.Data {
     public enum PointerState {
         Normal = 0, Hover = 1, Pressed = 2, Disabled = 3,
     }

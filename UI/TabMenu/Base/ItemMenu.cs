@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Utility_Pack.UI.TabMenu.Base;
 
-namespace Utility_Pack.UI.TabMenu {
+namespace DG_Pack.UI.TabMenu.Base {
     public class ItemMenu : MonoBehaviour, ITabMenu {
         public event Action<int, bool> OnSelect;
         public const int DeselectIndex = -1;

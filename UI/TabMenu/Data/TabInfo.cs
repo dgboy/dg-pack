@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Utility_Pack.UI.TabMenu.Data {
+namespace DG_Pack.UI.TabMenu.Data {
     public enum TabState {
         Normal = 0, Hover = 1, Pressed = 2, Disabled = 3, Selected = 4, Unselected = 5,
     }
