@@ -2,12 +2,12 @@ using DG_Pack.Base.Reactive;
 using UnityEngine;
 
 namespace DG_Pack.UI.Canvas.Handlers {
-    public class ViewGroup : Handler<Component> {
-        public ViewGroup(string name, IReactive<int> source) : base(name) {
+    public class ActiveStateSwitch : Handler<Component> {
+        public ActiveStateSwitch(string name, IReactive<bool> source) : base(name) {
             _source = source;
         }
 
-        private readonly IReactive<int> _source;
+        private readonly IReactive<bool> _source;
         private readonly bool _inverse;
 
 
@@ -21,10 +21,8 @@ namespace DG_Pack.UI.Canvas.Handlers {
 
         public override void Refresh() {
             var parent = Target.transform;
-            
-            for (int i = 0; i < parent.childCount; i++) {
-                parent.GetChild(i).gameObject.SetActive(_source.Value == i);
-            }
+            parent.GetChild(0).gameObject.SetActive(_source.Value);
+            parent.GetChild(1).gameObject.SetActive(!_source.Value);
         }
     }
 }
