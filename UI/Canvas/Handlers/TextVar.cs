@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace DG_Pack.UI.Canvas.Handlers {
     public class TextVar<T> : Handler<TextMeshProUGUI> {
-        public TextVar(string name, IReactive<T> source, string prefix = "") : base(name) {
-            _prefix = prefix;
+        public TextVar(string name, IReactive<T> source, string prefix = null) : base(name) {
+            _prefix = prefix != null ? prefix + " " : "";
             _source = source;
         }
 
@@ -22,7 +22,7 @@ namespace DG_Pack.UI.Canvas.Handlers {
         }
 
         public override void Refresh() {
-            Target.text = $"{_prefix} {_source.Value}";
+            Target.text = $"{_prefix}{_source.Value}";
         }
     }
 }
