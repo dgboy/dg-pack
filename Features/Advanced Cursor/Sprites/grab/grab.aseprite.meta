@@ -341,7 +341,7 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: grab_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -350,7 +350,7 @@ ScriptedImporter:
         width: 64
         height: 64
       spriteId: 0e850b9034ce07541a327e73941f8dc4
-    - name: grab_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -359,7 +359,7 @@ ScriptedImporter:
         width: 64
         height: 64
       spriteId: 2a87d54324d29444f94c7f8ec04ffb38
-    - name: grab_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -368,7 +368,7 @@ ScriptedImporter:
         width: 64
         height: 64
       spriteId: bfeaf37e6ede7ac44a51435b774c39c2
-    - name: grab_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -377,7 +377,7 @@ ScriptedImporter:
         width: 64
         height: 64
       spriteId: 1e0a5f3c065e3c544bb0db1d9eeca513
-    - name: grab_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -386,7 +386,7 @@ ScriptedImporter:
         width: 64
         height: 64
       spriteId: d7b421be57a7751469364d033af2df49
-    - name: grab_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -395,7 +395,7 @@ ScriptedImporter:
         width: 64
         height: 64
       spriteId: 981215c72cfd7c34687d4810f71bb27a
-    - name: grab_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -404,7 +404,7 @@ ScriptedImporter:
         width: 44
         height: 40
       spriteId: 68fcc453c32d9ee429b42db5d5425a92
-    - name: grab_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -413,7 +413,7 @@ ScriptedImporter:
         width: 64
         height: 64
       spriteId: c92758b128fafb944b21aca2c6a631e1
-    - name: grab_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -422,7 +422,7 @@ ScriptedImporter:
         width: 64
         height: 64
       spriteId: 3a8a46f11bb38004b9b4a2ec1df2f7ea
-    - name: grab_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
