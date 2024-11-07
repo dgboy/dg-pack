@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace DG_Pack.UI.Canvas {
-    public abstract class View : MonoBehaviour {
+    public abstract class UIView : MonoBehaviour {
         protected List<IHandler> Handlers { get; set; }
 
 
