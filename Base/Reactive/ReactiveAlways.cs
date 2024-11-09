@@ -14,5 +14,7 @@ namespace DG_Pack.Base.Reactive {
                 OnChanged?.Invoke();
             }
         }
+
+        public override string ToString() => _value.ToString();
     }
 }
