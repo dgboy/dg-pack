@@ -4,7 +4,7 @@ namespace DG_Pack.Base {
     public static class VectorEx {
         public static Vector2 Abs(this Vector2 v) => new(Mathf.Abs(v.x), Mathf.Abs(v.y));
         public static Vector2 Swap(this Vector2 v) => new(v.y, v.x);
-        public static Vector2 Fixed(this Vector2 v) => new(v.x >= v.y ? v.x : 0, v.y > v.x ? v.y : 0);
+        public static Vector2 Fixed(this Vector2 v) => new(Mathf.Abs(v.x) >= Mathf.Abs(v.y) ? v.x : 0, Mathf.Abs(v.y) > Mathf.Abs(v.x) ? v.y : 0);
         public static Vector2 Sign(this Vector2 v) =>
             new(v.x == 0 ? v.x : Mathf.Sign(v.x), v.y == 0 ? v.y : Mathf.Sign(v.y));
 
