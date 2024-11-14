@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Core.Common.Utils {
+namespace DG_Pack.Utils {
     public static class ArrayEx {
         public static IEnumerable<string> GetObstacleNames(this RaycastHit2D[] hits, Transform yourself) => hits
             .Where(x => x.transform != null && x.transform != yourself)
