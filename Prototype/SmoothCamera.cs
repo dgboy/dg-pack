@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-namespace DG_Pack.Camera {
-    public class SmoothCamera : MonoBehaviour, ICameraService {
+namespace DG_Pack.Prototype {
+    public class SmoothCamera : MonoBehaviour {
         public float smoothing = 0.1f;
 
         public Transform Target { get; set; }
