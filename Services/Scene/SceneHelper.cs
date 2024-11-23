@@ -1,10 +1,8 @@
-using static DG_Pack.Services.Scene.SceneID;
-
 namespace DG_Pack.Services.Scene {
     public static class SceneHelper {
         public static string GetName(this SceneID scene) => scene switch {
-            Game => "Game",
-            Home => "Home",
+            SceneID.Game => "Game",
+            SceneID.Home => "Home",
             _ => "Boot",
         };
     }
