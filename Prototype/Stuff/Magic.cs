@@ -1,31 +1,25 @@
 ﻿using UnityEngine;
 
-namespace Core.Player.Generic_Components {
+namespace DGPack.Prototype.Stuff {
     public class Magic : MonoBehaviour {
-        [SerializeField] private float maxMagic;
-        private int currentMagic;
+        [SerializeField] private float max;
+        private int current;
 
-        public int Max { get => (int)maxMagic; set => maxMagic = (int)value; }
-        public int Current { get => currentMagic; }
-        public bool IsExhausted => (currentMagic <= 0);
-
-
-        public bool CanUseMagic(int amount) => currentMagic >= amount;
-
-        public void FillMagic() => currentMagic = Max;
-        public void SetHealth(int amount) => currentMagic = amount;
-        public void UseAllMagic() => currentMagic = 0;
+        public int Max { get => (int)max; set => max = (int)value; }
+        public int Current => current;
+        public bool IsExhausted => current <= 0;
 
 
-        public virtual void UseMagic(int amount) {
-            currentMagic = (currentMagic - amount <= 0) ? 0 : currentMagic - amount;
-        }
-        public void RestoreMagic(int amount) {
-            currentMagic = (currentMagic + amount > Max) ? Max : currentMagic + amount;
-        }
+        public bool CanUse(int amount) => current >= amount;
 
-        void Start() {
-            FillMagic();
-        }
+        public void Fill() => current = Max;
+        public void SetHealth(int amount) => current = amount;
+        public void UseAll() => current = 0;
+
+
+        public virtual void Use(int amount) => current = current - amount <= 0 ? 0 : current - amount;
+        public void Restore(int amount) => current = current + amount > Max ? Max : current + amount;
+
+        public void Start() => Fill();
     }
 }
