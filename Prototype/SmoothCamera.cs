@@ -5,8 +5,8 @@ namespace DG_Pack.Prototype {
         public float smoothing = 0.1f;
 
         public Transform Target { get; set; }
-        // public Vector2 minPos;
-        // public Vector2 maxPos;
+        public Vector2 minPos;
+        public Vector2 maxPos;
 
 
         private void Start() {
