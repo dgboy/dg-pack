@@ -11,7 +11,6 @@ namespace DGPack.Services.Scene {
 
 
         public async Task Load(string scene) => await DoLoad(scene);
-        public async Task Load(SceneID scene) => await DoLoad(scene.GetName());
 
 
         private async Task DoLoad(string next) {
