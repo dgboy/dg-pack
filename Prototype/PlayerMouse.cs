@@ -1,16 +1,18 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class PlayerMouse : MonoBehaviour
-{
+public class PlayerMouse : MonoBehaviour {
     public static bool blockInput = false;
+
     public float speed = 3.0f;
     //private new Rigidbody2D rigidbody;
     //private Vector3 Movement;
 
     public Transform player;
     public IMoveableMap map;
+
     public Transform area;
+
     //private PlayerInput playerInput;
     private Vector3 destination;
 
@@ -42,6 +44,7 @@ public class PlayerMouse : MonoBehaviour
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
         Vector3 gridPosition = map.GetCoordinates(mousePosition);
+
         if (map.IsPassablePath(gridPosition)) {
             destination = mousePosition;
             var magnitude = -(transform.position - destination).magnitude;

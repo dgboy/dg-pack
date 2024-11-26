@@ -1,4 +1,4 @@
-namespace DG_Pack.Services.FSM {
+namespace DGPack.Services.FSM {
     public interface IExitAbleState {
         void Exit();
     }

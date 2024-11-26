@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Inputs {
+namespace DGPack.Prototype {
     public class MoveToClickPoint : MonoBehaviour {
         [SerializeField] private NavMeshAgent agent;
 

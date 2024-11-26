@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace DG_Pack.Prototype {
+namespace DGPack.Prototype {
     public class MoveToClickedTile : MonoBehaviour {
         private Vector2 input;
 

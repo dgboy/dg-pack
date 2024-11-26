@@ -1,4 +1,4 @@
-namespace DG_Pack.Services.Log {
+namespace DGPack.Services.Log {
     public static class LogHelper {
         public static string GetValue(this Dye scene) => scene switch {
             Dye.Red => "red",

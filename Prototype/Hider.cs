@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace DG_Pack.Prototype {
+namespace DGPack.Prototype {
     public class Hider : MonoBehaviour {
         private void Awake() => gameObject.SetActive(false);
     }

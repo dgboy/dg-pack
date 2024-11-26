@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace DG_Pack.Prototype {
+namespace DGPack.Prototype {
     public class MoveToCell : MonoBehaviour {
         public float speed = 5.0f;
         public float cellSize = 1.0f;

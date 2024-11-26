@@ -1,6 +1,6 @@
 using System;
 
-namespace DG_Pack.Services.FSM {
+namespace DGPack.Services.FSM {
     public interface IStateMachine {
         void Enter<TState>() where TState : IState;
         void Enter<TState, TPayload>(TPayload payload) where TState : IPayloadState<TPayload>;

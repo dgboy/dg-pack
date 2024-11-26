@@ -1,4 +1,4 @@
-namespace DG_Pack.Services.Scene {
+namespace DGPack.Services.Scene {
     public enum SceneID {
         Boot = 0,
         Home = 1,
