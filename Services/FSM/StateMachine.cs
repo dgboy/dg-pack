@@ -1,7 +1,7 @@
 using System;
-using DGPack.Services.Log;
+using DG_Pack.Services.Log;
 
-namespace DGPack.Services.FSM {
+namespace DG_Pack.Services.FSM {
     public class StateMachine : IStateMachine {
         public StateMachine(ICustomLogger logger, IStateFactory factory) {
             _logger = logger;

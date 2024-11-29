@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace UtilityPack.Helpers {
+namespace DG_Pack.Helpers {
     public static class WebRequester {
         public static IEnumerator Get(string url, Action<string> response) {
             using var request = UnityWebRequest.Get(url);

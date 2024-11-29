@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace DGPack.Services.Scene {
+namespace DG_Pack.Services.Scene {
     public interface ISceneService {
         string Current { get; }
         

@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.Video;
 
-namespace UtilityPack.Helpers {
+namespace DG_Pack.Helpers {
     public static class TextureMaker {
         public static bool showLogs = true;
 
@@ -20,7 +20,7 @@ namespace UtilityPack.Helpers {
         }
 
         /// <summary>
-        /// Не создавать RenderTexture и скриншот в одном кадре, иначе получится чёрный квадрат
+        /// РќРµ СЃРѕР·РґР°РІР°С‚СЊ RenderTexture Рё СЃРєСЂРёРЅС€РѕС‚ РІ РѕРґРЅРѕРј РєР°РґСЂРµ, РёРЅР°С‡Рµ РїРѕР»СѓС‡РёС‚СЃСЏ С‡С‘СЂРЅС‹Р№ РєРІР°РґСЂР°С‚
         /// </summary>
         /// <param name="rtex"></param>
         /// <returns></returns>

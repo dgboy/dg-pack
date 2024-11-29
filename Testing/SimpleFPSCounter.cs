@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace UtilityPack.Testing {
+namespace DG_Pack.Testing {
     [ExecuteInEditMode]
     public class SimpleFPSCounter : MonoBehaviour {
         [Header("Settings")]

@@ -1,7 +1,7 @@
-using DGPack.Services.Serialization;
+using DG_Pack.Services.Serialization;
 using UnityEngine;
 
-namespace DGPack.Services.Storage {
+namespace DG_Pack.Services.Storage {
     public class PrefStorage : IStorage {
         private ISerializer Serializer { get; }
         public PrefStorage(ISerializer serializer) => Serializer = serializer;

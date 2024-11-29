@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace DGPack.Prototype.Stuff {
+namespace DG_Pack.Prototype.Stuff {
     public class Magic : MonoBehaviour {
         [SerializeField] private float max;
         private int current;

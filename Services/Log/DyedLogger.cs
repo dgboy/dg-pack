@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace DGPack.Services.Log {
+namespace DG_Pack.Services.Log {
     public class DyedLogger : ICustomLogger {
         public void Log(string msg, object sender, Dye dye = Dye.None) =>
             Debug.Log($"<color={dye.GetValue()}>[{sender.GetType().Name}] {msg}</color>");

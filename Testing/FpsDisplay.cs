@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Testing {
+namespace DG_Pack.Testing {
     [RequireComponent(typeof(FpsCounter))]
     public class FpsDisplay : MonoBehaviour {
         [SerializeField] private Text _averageLabel;

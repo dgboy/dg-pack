@@ -1,4 +1,4 @@
-namespace DGPack.Services.Storage {
+namespace DG_Pack.Services.Storage {
     public interface IStorage {
         bool Has(string key);
         void Save<T>(string file, T data);

@@ -1,4 +1,4 @@
-namespace DGPack.Services.Log {
+namespace DG_Pack.Services.Log {
     public enum Dye {
         None,
         Red,

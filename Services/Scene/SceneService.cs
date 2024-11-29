@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
-using DGPack.Services.Log;
+using DG_Pack.Services.Log;
 using UnityEngine.SceneManagement;
 
-namespace DGPack.Services.Scene {
+namespace DG_Pack.Services.Scene {
     public class SceneService : ISceneService {
         public SceneService(ICustomLogger logger) => _logger = logger;
 

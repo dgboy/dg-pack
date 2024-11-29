@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace UtilityPack.Helpers {
+namespace DG_Pack.Helpers {
     public static class FileReader {
         public static bool showLogs = true;
 

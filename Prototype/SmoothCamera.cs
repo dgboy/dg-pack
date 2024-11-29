@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace DGPack.Prototype {
+namespace DG_Pack.Prototype {
     public class SmoothCamera : MonoBehaviour {
         public float smoothing = 0.1f;
 

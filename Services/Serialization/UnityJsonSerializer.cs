@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace DGPack.Services.Serialization {
+namespace DG_Pack.Services.Serialization {
     public class UnityJsonSerializer : ISerializer {
         public string Serialize(object data) =>
             JsonUtility.ToJson(data);

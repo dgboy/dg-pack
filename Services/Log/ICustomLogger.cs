@@ -1,4 +1,4 @@
-namespace DGPack.Services.Log {
+namespace DG_Pack.Services.Log {
     public interface ICustomLogger {
         void Log(string msg, object sender, Dye dye = Dye.None);
 
