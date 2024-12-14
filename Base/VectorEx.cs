@@ -18,9 +18,9 @@ namespace DG_Pack.Base {
             float rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             return Quaternion.Euler(0f, 0f, rotation);
         }
-        public static Quaternion ToRotation(this Vector2 direction, float angle = 90) {
+        public static Quaternion ToRotation(this Vector2 direction, float step = 90, float start = 90) {
             float rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            return Quaternion.Euler(0f, 0f, Mathf.RoundToInt(rotation / angle) * angle);
+            return Quaternion.Euler(0f, 0f, Mathf.RoundToInt(rotation / step) * step - start);
         }
 
         public static Vector2 ToDirection(this Quaternion quaternion) => quaternion.eulerAngles;
