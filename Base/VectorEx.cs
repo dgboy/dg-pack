@@ -14,11 +14,11 @@ namespace DG_Pack.Base {
         public static Vector2 Sign(this Vector2 v) =>
             new(v.x == 0 ? v.x : Mathf.Sign(v.x), v.y == 0 ? v.y : Mathf.Sign(v.y));
 
-        public static Quaternion ToFreeRotation(this Vector2 direction) {
+        public static Quaternion ToRotation(this Vector2 direction, float start = 90) {
             float rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            return Quaternion.Euler(0f, 0f, rotation);
+            return Quaternion.Euler(0f, 0f, rotation - start);
         }
-        public static Quaternion ToRotation(this Vector2 direction, float step = 90, float start = 90) {
+        public static Quaternion ToFixedRotation(this Vector2 direction, float start = 90, float step = 90) {
             float rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             return Quaternion.Euler(0f, 0f, Mathf.RoundToInt(rotation / step) * step - start);
         }
