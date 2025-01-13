@@ -18,6 +18,8 @@ namespace DG_Pack.Base {
             float rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             return Quaternion.Euler(0f, 0f, rotation - start);
         }
+        public static float ToAngle(this Vector2 direction) => Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        public static Vector2 ToDirection(this float angle) => new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
         public static Quaternion ToFixedRotation(this Vector2 direction, float start = 90, float step = 90) {
             float rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             return Quaternion.Euler(0f, 0f, Mathf.RoundToInt(rotation / step) * step - start);
