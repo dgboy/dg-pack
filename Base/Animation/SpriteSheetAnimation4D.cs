@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace DG_Pack.Base.Animation {
     public class SpriteSheetAnimation4D : MonoBehaviour {
-        public SpriteRenderer sr;
         public float fps = 30f;
 
         public Vector2 direction;
@@ -12,10 +11,20 @@ namespace DG_Pack.Base.Animation {
         public List<Sprite> right;
         public List<Sprite> up;
 
+        private SpriteRenderer Renderer => _renderer ?? GetComponent<SpriteRenderer>();
+        private SpriteRenderer _renderer;
+
 
         private void Update() {
             var sheet = GetActiveSheet();
-            sr.sprite = sheet[(int)(Time.time * fps) % sheet.Count];
+
+            if (sheet.Count == 0) {
+                Debug.Log($"No sprite sheet for actor <color=red>[{transform.parent.name}]</color>.");
+                enabled = false;
+                return;
+            }
+
+            Renderer.sprite = sheet[(int)(Time.time * fps) % sheet.Count];
         }
 
 
