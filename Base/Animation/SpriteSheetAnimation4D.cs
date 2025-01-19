@@ -20,13 +20,23 @@ namespace DG_Pack.Base.Animation {
 
 
         private List<Sprite> GetActiveSheet() {
-            if (direction.y < 0) return down;
-            if (direction.y > 0) return up;
-            if (direction.x < 0) return left;
-            if (direction.x > 0) return right;
+            if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y)) {
+                if (direction.x < 0) return left;
+                if (direction.x > 0) return right;
+            } else {
+                if (direction.y < 0) return down;
+                if (direction.y > 0) return up;
+            }
+
 
             return down;
         }
+
+        // private List<Sprite> GetActiveSheet() => direction.x switch {
+        //     < 0 => left,
+        //     > 0 => right,
+        //     _ => down,
+        // };
         // private List<Sprite> GetActiveSheet() => direction switch {
         //     Direction4.Down => down,
         //     Direction4.Left => left,
