@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace DG_Pack.Base.Animation {
     public class SpriteSheetAnimation4D : MonoBehaviour {
-        public float fps = 30f;
+        [Range(0, 30)] public int fps = 10;
 
         public Vector2 direction;
         public List<Sprite> down;
