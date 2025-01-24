@@ -1,0 +1,7 @@
+﻿{
+  "name": "DG-Pack.Prototype",
+  "references": [
+    "GUID:e23015ab38b875e4e9314112f33c11f5",
+    "GUID:365a8af4dceb47847b6b0d08c8474b92"
+  ]
+}

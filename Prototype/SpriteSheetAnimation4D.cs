@@ -2,8 +2,10 @@
 using DG_Pack.Services.Log;
 using UnityEngine;
 
-namespace DG_Pack.Base.Animation {
+namespace DG_Pack.Prototype {
     public class SpriteSheetAnimation4D : MonoBehaviour {
+        public SpriteRenderer sr;
+
         [Range(0, 30)] public int fps = 10;
 
         public Vector2 direction;
@@ -12,9 +14,11 @@ namespace DG_Pack.Base.Animation {
         public List<Sprite> right;
         public List<Sprite> up;
 
-        private SpriteRenderer Renderer => _renderer ?? GetComponent<SpriteRenderer>();
-        private SpriteRenderer _renderer;
 
+        private void OnValidate() {
+            sr ??= GetComponent<SpriteRenderer>();
+            sr.sprite = GetActiveSheet()[0];
+        }
 
         private void Update() {
             var sheet = GetActiveSheet();
@@ -25,7 +29,7 @@ namespace DG_Pack.Base.Animation {
                 return;
             }
 
-            Renderer.sprite = sheet[(int)(Time.time * fps) % sheet.Count];
+            sr.sprite = sheet[(int)(Time.time * fps) % sheet.Count];
         }
 
 
@@ -41,6 +45,7 @@ namespace DG_Pack.Base.Animation {
 
             return down;
         }
+
 
         // private List<Sprite> GetActiveSheet() => direction.x switch {
         //     < 0 => left,

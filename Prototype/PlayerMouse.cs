@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using DG_Pack.Inputs;
 using UnityEngine;
 
 namespace DG_Pack.Prototype {
@@ -11,7 +10,7 @@ namespace DG_Pack.Prototype {
         //private Vector3 Movement;
 
         public Transform player;
-        public IMoveableMap map;
+        // public IMoveableMap map;
 
         public Transform area;
 
@@ -45,13 +44,13 @@ namespace DG_Pack.Prototype {
             Vector2 mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-            Vector3 gridPosition = map.GetCoordinates(mousePosition);
-
-            if (map.IsPassablePath(gridPosition)) {
-                destination = mousePosition;
-                var magnitude = -(transform.position - destination).magnitude;
-                player.transform.position = (transform.position - destination) / magnitude * speed;
-            }
+            // Vector3 gridPosition = map.GetCoordinates(mousePosition);
+            //
+            // if (map.IsPassablePath(gridPosition)) {
+            //     destination = mousePosition;
+            //     var magnitude = -(transform.position - destination).magnitude;
+            //     player.transform.position = (transform.position - destination) / magnitude * speed;
+            // }
         }
 
         public void LateUpdate() {
