@@ -16,8 +16,13 @@ namespace DG_Pack.Prototype {
 
 
         private void OnValidate() {
+            var sheet = GetActiveSheet();
+
+            if (sheet.Count == 0)
+                return;
+
             sr ??= GetComponent<SpriteRenderer>();
-            sr.sprite = GetActiveSheet()[0];
+            sr.sprite = sheet[0];
         }
 
         private void Update() {
