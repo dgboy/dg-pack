@@ -1,0 +1,16 @@
+{
+    "name": "DG-Pack.Services",
+    "rootNamespace": "",
+    "references": [
+        "GUID:e23015ab38b875e4e9314112f33c11f5"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
