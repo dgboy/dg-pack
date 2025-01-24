@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DG_Pack.Services.Log;
 using UnityEngine;
 
 namespace DG_Pack.Base.Animation {
@@ -19,7 +20,7 @@ namespace DG_Pack.Base.Animation {
             var sheet = GetActiveSheet();
 
             if (sheet.Count == 0) {
-                Debug.Log($"No sprite sheet for actor <color=red>[{transform.parent.name}]</color>.");
+                DLogger.Log(this, $"No sprite sheet for actor <color=red>[{transform.parent.name}]</color>.");
                 enabled = false;
                 return;
             }
