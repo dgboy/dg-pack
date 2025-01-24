@@ -8,7 +8,9 @@ namespace DG_Pack.Prototype {
 
         [Range(0, 30)] public int fps = 10;
 
+        public bool moving;
         public Vector2 direction;
+
         public List<Sprite> down;
         public List<Sprite> left;
         public List<Sprite> right;
@@ -34,7 +36,7 @@ namespace DG_Pack.Prototype {
                 return;
             }
 
-            sr.sprite = sheet[(int)(Time.time * fps) % sheet.Count];
+            sr.sprite = sheet[moving ? (int)(Time.time * fps) % sheet.Count : 0];
         }
 
 
