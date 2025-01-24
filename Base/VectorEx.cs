@@ -6,6 +6,9 @@ namespace DG_Pack.Base {
         public static Vector3 To3(this Vector3 v, float z) => new(v.x, v.y, z);
 
         public static float Axis(this Vector3 v, Vector2 dir) => dir.x != 0 ? v.x : v.y;
+        public static bool OnLine(this Vector2 v, Vector2 target) => 
+            Mathf.RoundToInt(v.x) == Mathf.RoundToInt(target.x) || 
+            Mathf.RoundToInt(v.y) == Mathf.RoundToInt(target.y);
 
         public static Vector2 Abs(this Vector2 v) => new(Mathf.Abs(v.x), Mathf.Abs(v.y));
         public static Vector2 Swap(this Vector2 v) => new(v.y, v.x);
