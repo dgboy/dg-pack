@@ -3,13 +3,9 @@ using DG_Pack.Services.Log;
 
 namespace DG_Pack.Services.FSM {
     public class StateMachine : IStateMachine {
-        public StateMachine(ICustomLogger logger, IStateFactory factory) {
-            _logger = logger;
-            _factory = factory;
-        }
+        public StateMachine(IStateFactory factory) => Factory = factory;
 
-        private readonly ICustomLogger _logger;
-        private readonly IStateFactory _factory;
+        private IStateFactory Factory { get; }
         private IExitAbleState Current { get; set; }
 
 
@@ -28,8 +24,8 @@ namespace DG_Pack.Services.FSM {
         private TState ChangeState<TState>() where TState : IExitAbleState {
             Current?.Exit();
 
-            var next = _factory.Create<TState>();
-            _logger.LogTransition(this, Current.Class(), next.Class());
+            var next = Factory.Create<TState>();
+            DLogger.LogTransition(this, Current.Class(), next.Class());
             Current = next;
 
             return next;
