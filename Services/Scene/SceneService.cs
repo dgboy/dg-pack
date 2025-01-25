@@ -10,15 +10,14 @@ namespace DG_Pack.Services.Scene {
         public string Current => SceneManager.GetActiveScene().name;
 
 
-        public async Task Load(string scene) => await DoLoad(scene);
+        public async Task Load(string scene) {
+            if (Current == scene) return;
 
+            _logger.LogTransition(this, Current, scene);
 
-        private async Task DoLoad(string next) {
-            if (Current == next) return;
-            _logger.LogTransition(this, Current, next);
+            var operation = SceneManager.LoadSceneAsync(scene);
 
-            var operation = SceneManager.LoadSceneAsync(next);
-            while (!operation.isDone)
+            while (operation is { isDone: false })
                 await Task.Yield();
         }
     }
