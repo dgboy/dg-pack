@@ -16,6 +16,10 @@ namespace DG_Pack.Base {
             v.x != 0 && Mathf.Abs(v.x) >= Mathf.Abs(v.y) ? Mathf.Sign(v.x) : 0,
             v.x == 0 && Mathf.Abs(v.y) > Mathf.Abs(v.x) ? Mathf.Sign(v.y) : 0
         );
+        public static Vector2 Fixed(this Vector2Int v) => new(
+            v.x != 0 && Mathf.Abs(v.x) >= Mathf.Abs(v.y) ? Mathf.Sign(v.x) : 0,
+            v.x == 0 && Mathf.Abs(v.y) > Mathf.Abs(v.x) ? Mathf.Sign(v.y) : 0
+        );
         
         public static Vector2Int FixedInt(this Vector2 v) => new(
             v.x != 0 && Mathf.Abs(v.x) >= Mathf.Abs(v.y) ? Mathf.RoundToInt(Mathf.Sign(v.x)) : 0,
