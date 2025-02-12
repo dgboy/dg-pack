@@ -16,16 +16,21 @@ namespace DG_Pack.Services.Scene {
         public async Task Load(string scene) {
             if (Current == scene) return;
 
-            DLogger.LogTransition(this, Current, scene);
-
             LoadingCurtain.Show();
-            await Task.Delay(2000);
-
             var operation = SceneManager.LoadSceneAsync(scene);
 
-            while (operation is { isDone: false })
+            if (operation == null) {
+                DLogger.LogError($"Сцена {scene} не найдена!", this);
+                return;
+            }
+
+            operation.allowSceneActivation = false;
+
+            while (LoadingCurtain.Playing) // || operation.progress < 0.9f
                 await Task.Yield();
 
+            operation.allowSceneActivation = true;
+            DLogger.LogTransition(this, Current, scene);
             LoadingCurtain.Hide();
         }
     }
