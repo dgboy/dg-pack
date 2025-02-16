@@ -46,5 +46,7 @@ namespace DG_Pack.Base {
             int angle = Random.Range(-1, 2) * 90;
             return (angle - prevDir.ToAngle()).ToDirection();
         }
+        
+        public static bool InRange(this float val, float min, float max) => val >= min && val <= max;
     }
 }
