@@ -39,5 +39,6 @@ namespace DG_Pack.Prototype {
                 : Math.Sign(dir.y) == -1
                     ? Direction4.Down
                     : Direction4.Up;
+        public static Direction4 From(this Vector2Int dir) => From((Vector2)dir);
     }
 }
