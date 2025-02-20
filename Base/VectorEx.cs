@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace DG_Pack.Base {
     public static class VectorEx {
@@ -48,5 +50,7 @@ namespace DG_Pack.Base {
         }
         
         public static bool InRange(this float val, float min, float max) => val >= min && val <= max;
+
+        public static bool IsSoftTurn(this Vector2 next, Vector2 prev) => Math.Abs(Vector2.Dot(next, prev) + 1f) > 0.1f;
     }
 }
