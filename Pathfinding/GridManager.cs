@@ -43,7 +43,7 @@ namespace DG_Pack.Pathfinding {
             cell.x >= 0 && cell.x < SizeX &&
             cell.y >= 0 && cell.y < SizeY;
 
-        private static Vector3 GridToWorldPosition(Vector2Int gridPos) => new(gridPos.x, gridPos.y, 0);
+        public Vector3 GridToWorldPosition(Vector2Int gridPos) => new(gridPos.x, gridPos.y, 0);
 
         private void OnDrawGizmos() {
             if (Nodes == null) return;
