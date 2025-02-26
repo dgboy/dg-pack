@@ -1,65 +1,56 @@
-﻿using UnityEngine;
+﻿using DG_Pack.Base;
+using UnityEngine;
 
 namespace DG_Pack.Pathfinding {
-    public class GridManager : MonoBehaviour {
-        public int GridSizeX = 10;
-        public int GridSizeY = 10;
-        public float ObstacleChance = 0.2f;
+    public class GridManager : GridManagerBase {
+        [SerializeField] private Vector2Int size = 10 * Vector2Int.one;
 
-        private Node[,] grid;
+        public override Vector2Int Size => size;
+        public override int SizeX => size.x;
+        public override int SizeY => size.y;
 
-        public Node[,] Grid => grid;
-        public int MaxGridX => GridSizeX - 1;
-        public int MaxGridY => GridSizeY - 1;
+        public float obstacleChance = 0.2f;
 
-        void Start() {
+        private Node[,] Nodes { get; set; }
+
+
+        private void Start() {
             InitializeGrid();
         }
 
         public void InitializeGrid() {
-            grid = new Node[GridSizeX, GridSizeY];
+            var pivot = Size * Vector2Int.one / 2;
+            Nodes = new Node[SizeX, SizeY];
 
-            for (int x = 0; x < GridSizeX; x++) {
-                for (int y = 0; y < GridSizeY; y++) {
-                    bool walkable = Random.Range(0f, 1f) > ObstacleChance;
-                    grid[x, y] = new Node(walkable, new Vector2Int(x, y));
+            for (int x = 0; x < SizeX; x++) {
+                for (int y = 0; y < SizeY; y++) {
+                    bool walkable = Random.Range(0f, 1f) > obstacleChance;
+                    Nodes[x, y] = new Node(walkable, new Vector2Int(x, y) - pivot);
                 }
             }
         }
 
-        public Node GetNodeAtPosition(Vector2Int gridPosition) {
-            if (IsPositionValid(gridPosition))
-                return grid[gridPosition.x, gridPosition.y];
+        public override Node GetNode(Vector2Int cell) => IsPositionValid(cell) ? Nodes[cell.x, cell.y] : null;
 
-            return null;
-        }
 
-        public bool IsPositionValid(Vector2Int gridPosition) {
-            return gridPosition.x >= 0 && gridPosition.x < GridSizeX &&
-                   gridPosition.y >= 0 && gridPosition.y < GridSizeY;
-        }
+        public bool IsPositionWalkable(Vector2Int gridPosition) =>
+            IsPositionValid(gridPosition) && Nodes[gridPosition.x, gridPosition.y].IsWalkable;
 
-        public bool IsPositionWalkable(Vector2Int gridPosition) {
-            return IsPositionValid(gridPosition) && grid[gridPosition.x, gridPosition.y].IsWalkable;
-        }
+        public Vector2Int WorldToGridPosition(Vector3 worldPos) =>
+            new(Mathf.RoundToInt(worldPos.x), Mathf.RoundToInt(worldPos.y));
 
-        public Vector2Int WorldToGridPosition(Vector3 worldPos) {
-            return new Vector2Int(
-                Mathf.RoundToInt(worldPos.x),
-                Mathf.RoundToInt(worldPos.y)
-            );
-        }
+        private bool IsPositionValid(Vector2Int cell) =>
+            cell.x >= 0 && cell.x < SizeX &&
+            cell.y >= 0 && cell.y < SizeY;
 
-        public Vector3 GridToWorldPosition(Vector2Int gridPos) {
-            return new Vector3(gridPos.x, gridPos.y, 0);
-        }
+        private static Vector3 GridToWorldPosition(Vector2Int gridPos) => new(gridPos.x, gridPos.y, 0);
 
-        void OnDrawGizmos() {
-            if (grid == null) return;
+        private void OnDrawGizmos() {
+            if (Nodes == null) return;
 
-            foreach (Node node in grid) {
-                Gizmos.color = node.IsWalkable ? Color.white : Color.red;
-                Vector3 pos = GridToWorldPosition(node.Position);
+            foreach (var node in Nodes) {
+                Gizmos.color = (node.IsWalkable ? Color.white : Color.red).Alpha(0.5f);
+                var pos = GridToWorldPosition(node.Position);
 
                 if (node.IsWalkable)
                     Gizmos.DrawCube(pos, Vector3.one * 0.9f);
