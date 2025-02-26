@@ -6,7 +6,7 @@ namespace DG_Pack.Pathfinding {
         public int gridSizeX = 10;
         public int gridSizeY = 10;
 
-        private Node[,] grid;
+        public Node[,] grid;
 
 
         private void Start() {
