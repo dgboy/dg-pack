@@ -23,7 +23,7 @@ namespace DG_Pack.Prototype {
             if (sheet.Count == 0)
                 return;
 
-            sr ??= GetComponent<SpriteRenderer>();
+            sr = GetComponent<SpriteRenderer>();
             sr.sprite = sheet[0];
         }
 
