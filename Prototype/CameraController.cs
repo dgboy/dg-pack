@@ -2,17 +2,16 @@
 
 namespace DG_Pack.Prototype {
     public class CameraController : MonoBehaviour {
-        [SerializeField] private Transform target;
+        public Transform target;
 
-        [SerializeField] private float smoothSpeed = 0.125f;
+        public float smoothSpeed = 0.125f;
 
-        [SerializeField] private bool useBounds = true;
-
-        [SerializeField] private BoxCollider2D boundaryCollider;
+        public bool useBounds = true;
+        public BoxCollider2D boundaryCollider;
         private float minX, maxX, minY, maxY;
 
-        [SerializeField] private bool useDeadzone;
-        [SerializeField] private Vector2 deadzoneSize = new Vector2(2f, 2f);
+        public bool useDeadzone;
+        public Vector2 deadzoneSize = new(2f, 2f);
 
         private Vector3 _velocity = Vector3.zero;
         private Camera _camera;
@@ -81,17 +80,35 @@ namespace DG_Pack.Prototype {
             float cameraHeight = _camera.orthographicSize;
             float cameraWidth = cameraHeight * _camera.aspect;
 
-            position.x = Mathf.Clamp(
-                position.x,
-                minX + cameraWidth,
-                maxX - cameraWidth
-            );
+            // Рассчитываем доступное пространство и требуемый размер
+            float availableWidth = maxX - minX;
+            float requiredWidth = cameraWidth * 2f;
+            float availableHeight = maxY - minY;
+            float requiredHeight = cameraHeight * 2f;
 
-            position.y = Mathf.Clamp(
-                position.y,
-                minY + cameraHeight,
-                maxY - cameraHeight
-            );
+            // Обработка оси X
+            if (availableWidth >= requiredWidth) {
+                position.x = Mathf.Clamp(
+                    position.x,
+                    minX + cameraWidth,
+                    maxX - cameraWidth
+                );
+            } else {
+                position.x = (minX + maxX) * 0.5f; // Центрируем камеру
+                Debug.LogWarning("Camera width exceeds level bounds! Centering horizontally.");
+            }
+
+            // Обработка оси Y
+            if (availableHeight >= requiredHeight) {
+                position.y = Mathf.Clamp(
+                    position.y,
+                    minY + cameraHeight,
+                    maxY - cameraHeight
+                );
+            } else {
+                position.y = (minY + maxY) * 0.5f; // Центрируем камеру
+                Debug.LogWarning("Camera height exceeds level bounds! Centering vertically.");
+            }
 
             return position;
         }
