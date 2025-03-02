@@ -95,7 +95,6 @@ namespace DG_Pack.Prototype {
                 );
             } else {
                 position.x = (minX + maxX) * 0.5f; // Центрируем камеру
-                Debug.LogWarning("Camera width exceeds level bounds! Centering horizontally.");
             }
 
             // Обработка оси Y
@@ -107,7 +106,6 @@ namespace DG_Pack.Prototype {
                 );
             } else {
                 position.y = (minY + maxY) * 0.5f; // Центрируем камеру
-                Debug.LogWarning("Camera height exceeds level bounds! Centering vertically.");
             }
 
             return position;
