@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 1024
     resizeAlgorithm: 1
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 100
     crunchedCompression: 1
     allowsAlphaSplitting: 0
@@ -149,7 +149,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: default_0
+      name: default_x
       rect:
         serializedVersion: 2
         x: 0
@@ -193,7 +193,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default_2
+      name: default_r
       rect:
         serializedVersion: 2
         x: 64
@@ -215,7 +215,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default_3
+      name: default_rect_outline
       rect:
         serializedVersion: 2
         x: 96
@@ -237,7 +237,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default_4
+      name: default_gear
       rect:
         serializedVersion: 2
         x: 129
@@ -259,7 +259,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default_5
+      name: default_crop_frame
       rect:
         serializedVersion: 2
         x: 160
@@ -281,7 +281,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default_6
+      name: default_left
       rect:
         serializedVersion: 2
         x: 192
@@ -303,7 +303,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default_7
+      name: default_right
       rect:
         serializedVersion: 2
         x: 224
@@ -325,7 +325,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default_8
+      name: default_down
       rect:
         serializedVersion: 2
         x: 256
@@ -347,7 +347,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default_9
+      name: default_up
       rect:
         serializedVersion: 2
         x: 288
@@ -369,7 +369,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default_10
+      name: default_settings
       rect:
         serializedVersion: 2
         x: 0
@@ -391,7 +391,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default_11
+      name: default_crop_rect
       rect:
         serializedVersion: 2
         x: 32
@@ -2217,7 +2217,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default_94
+      name: default_underline
       rect:
         serializedVersion: 2
         x: 129
@@ -2239,7 +2239,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default_95
+      name: default_money
       rect:
         serializedVersion: 2
         x: 160
@@ -2327,7 +2327,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default_99
+      name: default_circle
       rect:
         serializedVersion: 2
         x: 288
@@ -2362,10 +2362,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      default_0: -872402726
       default_1: 2046783947
-      default_10: 745923155
-      default_11: 859311719
       default_12: 678335330
       default_13: 1243959697
       default_14: -1248375384
@@ -2374,7 +2371,6 @@ TextureImporter:
       default_17: 683727023
       default_18: -528214178
       default_19: -1007638787
-      default_2: 416701697
       default_20: 169794120
       default_21: 343482130
       default_22: -1203002236
@@ -2385,7 +2381,6 @@ TextureImporter:
       default_27: 1170730591
       default_28: 1981330937
       default_29: -1671724307
-      default_3: -556550143
       default_30: -1189426907
       default_31: 1086010802
       default_32: -676754255
@@ -2396,7 +2391,6 @@ TextureImporter:
       default_37: -326197242
       default_38: -714619408
       default_39: -30803950
-      default_4: -1914328355
       default_40: 366657789
       default_41: 1171837180
       default_42: 1680386129
@@ -2407,7 +2401,6 @@ TextureImporter:
       default_47: 285080220
       default_48: 1516673027
       default_49: -1849529211
-      default_5: 1551036700
       default_50: -662708256
       default_51: 291749097
       default_52: 1359943455
@@ -2418,7 +2411,6 @@ TextureImporter:
       default_57: 335812983
       default_58: 1418745890
       default_59: -700260977
-      default_6: -892976001
       default_60: -1939657617
       default_61: -889961842
       default_62: 1199258322
@@ -2429,7 +2421,6 @@ TextureImporter:
       default_67: -2023084708
       default_68: 744676798
       default_69: -1152623899
-      default_7: -1957506396
       default_70: -114909608
       default_71: -249782801
       default_72: 1810043921
@@ -2440,7 +2431,6 @@ TextureImporter:
       default_77: -926544808
       default_78: -1466429888
       default_79: -148949855
-      default_8: -134021675
       default_80: 723354453
       default_81: -1485420953
       default_82: 1861469383
@@ -2451,17 +2441,27 @@ TextureImporter:
       default_87: -1291723066
       default_88: -1061214484
       default_89: -1208172727
-      default_9: -1034243968
       default_90: 589238948
       default_91: 1992744197
       default_92: 790972200
-      default_94: 1799512488
-      default_95: 1484720370
       default_97: 1302619754
       default_98: -571398993
-      default_99: 2070733608
+      default_circle: 2070733608
+      default_crop_frame: 1551036700
+      default_crop_rect: 859311719
+      default_down: -134021675
+      default_gear: -1914328355
+      default_left: -892976001
+      default_money: 1484720370
+      default_r: 416701697
       default_rect_fill: -991370446
+      default_rect_outline: -556550143
+      default_right: -1957506396
+      default_settings: 745923155
+      default_underline: 1799512488
+      default_up: -1034243968
       default_warp: 1743366388
+      default_x: -872402726
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
