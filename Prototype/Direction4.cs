@@ -40,5 +40,11 @@ namespace DG_Pack.Prototype {
                     ? Direction4.Down
                     : Direction4.Up;
         public static Direction4 From(this Vector2Int dir) => From((Vector2)dir);
+
+        public static Vector2Int Random(this Direction4 dir) {
+            int x = UnityEngine.Random.Range(-1, 2);
+            int y = x == 0 ? UnityEngine.Random.Range(-1, 2) : 0;
+            return new Vector2Int(x, y);
+        }
     }
 }
