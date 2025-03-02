@@ -61,13 +61,13 @@ namespace DG_Pack.Pathfinding {
             return Nodes[x, y];
         }
 
-        public override bool IsPositionWalkable(Vector2Int cell) =>
+        public override bool IsWalkable(Vector2Int cell) =>
             IsPositionValid(cell) && Nodes[cell.x, cell.y].IsWalkable;
-        public override Vector2Int WorldToGridPosition(Vector3 worldPos) {
-            var cell = _unityGrid.WorldToCell(worldPos);
+        public override Vector2Int PositionToCell(Vector3 position) {
+            var cell = _unityGrid.WorldToCell(position);
             return new Vector2Int(cell.x - _bounds.x, cell.y - _bounds.y);
         }
-        public override Vector3 GridToWorldPosition(Vector2Int cell) {
+        public override Vector3 CellToPosition(Vector2Int cell) {
             var cellPosition = new Vector3Int(_bounds.x + cell.x, _bounds.y + cell.y, _bounds.z);
             return _unityGrid.CellToWorld(cellPosition) + _unityGrid.cellSize / 2f;
         }
@@ -84,7 +84,7 @@ namespace DG_Pack.Pathfinding {
 
             foreach (var node in Nodes) {
                 Gizmos.color = (node.IsWalkable ? Color.white : Color.red).Alpha(0.5f);
-                var pos = GridToWorldPosition(node.Position);
+                var pos = CellToPosition(node.Position);
 
 
                 if (node.IsWalkable)

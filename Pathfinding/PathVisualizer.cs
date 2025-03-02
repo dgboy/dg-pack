@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace DG_Pack.Pathfinding {
+// На камеру или объект с коллайдером добавьте:
+
     public class PathVisualizer : MonoBehaviour {
         [SerializeField] private PathfinderHub hub;
         private GridManagerBase Grid => hub.grid;
@@ -10,42 +12,39 @@ namespace DG_Pack.Pathfinding {
 
         public LineRenderer lineRenderer;
 
-        private Vector2Int _lastTargetPos;
+        private Vector2Int _lastAgent;
+        private Vector2Int _lastTarget;
         private Camera _camera;
 
         private void Awake() {
             _camera = Camera.main;
         }
         private void Update() {
-            var mouseWorldPos = _camera.ScreenToWorldPoint(Input.mousePosition);
-            var targetGridPos = Grid.WorldToGridPosition(mouseWorldPos);
+            var targetCell = Grid.PositionToCell(_camera.ScreenToWorldPoint(Input.mousePosition));
+            var agentCell = Grid.PositionToCell(hub.agent.transform.position);
 
-            // Проверяем, изменилась ли позиция и доступна ли она
-            if (targetGridPos == _lastTargetPos || !Grid.IsPositionWalkable(targetGridPos))
+            if (targetCell == _lastTarget && agentCell == _lastAgent || !Grid.IsWalkable(targetCell))
                 return;
 
-            var agentGridPos = Grid.WorldToGridPosition(hub.agent.position);
-            var path = Pathfinder.FindPath(agentGridPos, targetGridPos);
-            UpdatePathVisualization(path);
+            var path = Pathfinder.FindPath(agentCell, targetCell);
 
-            _lastTargetPos = targetGridPos;
+            if (path == null)
+                return;
+
+            UpdatePathVisualization(path);
+            _lastTarget = targetCell;
+            _lastAgent = agentCell;
         }
 
-        private void UpdatePathVisualization(List<Node> path) {
+        private void UpdatePathVisualization(List<Vector3> path) {
             if (path == null || path.Count == 0) {
                 lineRenderer.positionCount = 0;
                 return;
             }
 
-            // Добавляем начальную позицию агента
-            var positions = new Vector3[path.Count + 1];
-            positions[0] = hub.agent.position;
-
-            for (int i = 0; i < path.Count; i++)
-                positions[i + 1] = Grid.GridToWorldPosition(path[i].Position);
-
-            lineRenderer.positionCount = positions.Length;
-            lineRenderer.SetPositions(positions);
+            path.Insert(0, hub.agent.transform.position);
+            lineRenderer.positionCount = path.Count;
+            lineRenderer.SetPositions(path.ToArray());
         }
 
         private void OnDrawGizmos() {
@@ -55,13 +54,13 @@ namespace DG_Pack.Pathfinding {
             // Визуализация узлов пути
             Gizmos.color = Color.cyan;
 
-            if (_lastTargetPos == Vector2Int.zero)
+            if (_lastTarget == Vector2Int.zero)
                 return;
 
-            var targetNode = Grid.GetNode(_lastTargetPos);
+            var targetNode = Grid.GetNode(_lastTarget);
 
             if (targetNode != null)
-                Gizmos.DrawSphere(Grid.GridToWorldPosition(targetNode.Position), 0.2f);
+                Gizmos.DrawSphere(Grid.CellToPosition(targetNode.Position), 0.2f);
         }
     }
 }

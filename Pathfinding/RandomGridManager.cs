@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace DG_Pack.Pathfinding {
-    public class GridManager : GridManagerBase {
+    public class RandomGridManager : GridManagerBase {
         [SerializeField] private Vector2Int size = 10 * Vector2Int.one;
 
         public override Vector2Int Size => size;
@@ -29,24 +29,24 @@ namespace DG_Pack.Pathfinding {
         public override Node GetNode(Vector2Int cell) => IsPositionValid(cell) ? Nodes[cell.x, cell.y] : null;
 
 
-        public override bool IsPositionWalkable(Vector2Int cell) =>
+        public override bool IsWalkable(Vector2Int cell) =>
             IsPositionValid(cell) && Nodes[cell.x, cell.y].IsWalkable;
 
-        public override Vector2Int WorldToGridPosition(Vector3 worldPos) =>
-            new(Mathf.RoundToInt(worldPos.x), Mathf.RoundToInt(worldPos.y));
+        public override Vector2Int PositionToCell(Vector3 position) =>
+            new(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y));
 
         private bool IsPositionValid(Vector2Int cell) =>
             cell.x >= 0 && cell.x < SizeX &&
             cell.y >= 0 && cell.y < SizeY;
 
-        public override Vector3 GridToWorldPosition(Vector2Int cell) => new(cell.x, cell.y, 0);
+        public override Vector3 CellToPosition(Vector2Int cell) => new(cell.x, cell.y, 0);
 
         private void OnDrawGizmos() {
             if (Nodes == null) return;
 
             foreach (var node in Nodes) {
                 Gizmos.color = (node.IsWalkable ? Color.white : Color.red).Alpha(0.5f);
-                var pos = GridToWorldPosition(node.Position);
+                var pos = CellToPosition(node.Position);
 
                 if (node.IsWalkable)
                     Gizmos.DrawCube(pos, Vector3.one * 0.9f);

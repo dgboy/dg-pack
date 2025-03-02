@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using DG_Pack.Base;
 using UnityEngine;
@@ -7,10 +6,21 @@ namespace DG_Pack.Pathfinding {
     public class AStar {
         public AStar(IGridManager grid) => Grid = grid;
 
-        public IGridManager Grid { get; }
+        private IGridManager Grid { get; }
 
 
-        public List<Node> FindPath(Vector2Int from, Vector2Int to) {
+        public List<Vector3> FindPath(Vector3 from, Vector3 to) {
+            var targetCell = Grid.PositionToCell(to);
+
+            // Проверяем, изменилась ли позиция и доступна ли она
+            if (from == to || !Grid.IsWalkable(targetCell))
+                return null;
+
+            var currentCell = Grid.PositionToCell(from);
+            return FindPath(currentCell, targetCell);
+        }
+
+        public List<Vector3> FindPath(Vector2Int from, Vector2Int to) {
             var startNode = Grid.GetNode(from);
             var targetNode = Grid.GetNode(to);
 
@@ -57,7 +67,7 @@ namespace DG_Pack.Pathfinding {
             foreach (var dir in VectorEx.Direction4D) {
                 int x = node.Position.x + dir.x;
                 int y = node.Position.y + dir.y;
-                var offset = Vector2Int.zero;//-Grid.Size / 2;
+                var offset = Vector2Int.zero; //-Grid.Size / 2;
 
 
                 if (x >= offset.x && x < Grid.SizeX && y >= offset.y && y < Grid.SizeY)
@@ -81,12 +91,12 @@ namespace DG_Pack.Pathfinding {
         }
 
 
-        private static List<Node> RetracePath(Node startNode, Node endNode) {
-            var path = new List<Node>();
+        private List<Vector3> RetracePath(Node startNode, Node endNode) {
+            var path = new List<Vector3>();
             var currentNode = endNode;
 
             while (currentNode != startNode) {
-                path.Add(currentNode);
+                path.Add(Grid.CellToPosition(currentNode.Position));
                 currentNode = currentNode.Parent;
             }
 

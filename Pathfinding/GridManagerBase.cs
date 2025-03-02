@@ -8,9 +8,11 @@ namespace DG_Pack.Pathfinding {
 
 
         public abstract void Initialize();
+
         public abstract Node GetNode(Vector2Int cell);
-        public abstract Vector2Int WorldToGridPosition(Vector3 worldPos);
-        public abstract bool IsPositionWalkable(Vector2Int cell);
-        public abstract Vector3 GridToWorldPosition(Vector2Int cell);
+        public abstract bool IsWalkable(Vector2Int cell);
+
+        public abstract Vector2Int PositionToCell(Vector3 position);
+        public abstract Vector3 CellToPosition(Vector2Int cell);
     }
 }
