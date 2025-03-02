@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DG_Pack.Base;
 using UnityEngine;
 
 namespace DG_Pack.Pathfinding {
@@ -18,17 +19,8 @@ namespace DG_Pack.Pathfinding {
             openSet.Add(startNode);
 
             while (openSet.Count > 0) {
-                var currentNode = openSet[0];
-
                 // Находим узел с наименьшей FCost
-                for (int i = 1; i < openSet.Count; i++) {
-                    if (
-                        openSet[i].FCost < currentNode.FCost ||
-                        openSet[i].FCost == currentNode.FCost && openSet[i].HCost < currentNode.HCost
-                    ) {
-                        currentNode = openSet[i];
-                    }
-                }
+                var currentNode = FindCheapNode(openSet, openSet[0]);
 
                 openSet.Remove(currentNode);
                 closedSet.Add(currentNode);
@@ -46,6 +38,34 @@ namespace DG_Pack.Pathfinding {
 
             return null; // Путь не найден
         }
+
+        private static Node FindCheapNode(List<Node> set, Node currentNode) {
+            for (int i = 1; i < set.Count; i++) {
+                if (
+                    set[i].FCost < currentNode.FCost ||
+                    set[i].FCost == currentNode.FCost && set[i].HCost < currentNode.HCost
+                ) {
+                    currentNode = set[i];
+                }
+            }
+
+            return currentNode;
+        }
+        private List<Node> GetNeighbours(Node node) {
+            var neighbours = new List<Node>();
+
+            foreach (var dir in VectorEx.Direction4D) {
+                int x = node.Position.x + dir.x;
+                int y = node.Position.y + dir.y;
+                var offset = Vector2Int.zero;//-Grid.Size / 2;
+
+
+                if (x >= offset.x && x < Grid.SizeX && y >= offset.y && y < Grid.SizeY)
+                    neighbours.Add(Grid.GetNode(new Vector2Int(x, y)));
+            }
+
+            return neighbours;
+        }
         private static void TryCostNeighbourNode(Node neighbour, Node current, List<Node> openSet, Node targetNode) {
             int newMovementCostToNeighbour = current.GCost + GetDistance(current, neighbour);
 
@@ -58,28 +78,6 @@ namespace DG_Pack.Pathfinding {
 
             if (!openSet.Contains(neighbour))
                 openSet.Add(neighbour);
-        }
-
-        private List<Node> GetNeighbours(Node node) {
-            var neighbours = new List<Node>();
-
-            // 4-сторонние соседи (можно добавить диагонали)
-            Vector2Int[] directions = {
-                new(0, 1),
-                new(1, 0),
-                new(0, -1),
-                new(-1, 0),
-            };
-
-            foreach (var dir in directions) {
-                int x = node.Position.x + dir.x;
-                int y = node.Position.y + dir.y;
-
-                if (x >= 0 && x < Grid.SizeX && y >= 0 && y < Grid.SizeY)
-                    neighbours.Add(Grid.GetNode(new Vector2Int(x, y)));
-            }
-
-            return neighbours;
         }
 
 

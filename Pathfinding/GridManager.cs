@@ -14,18 +14,14 @@ namespace DG_Pack.Pathfinding {
         private Node[,] Nodes { get; set; }
 
 
-        private void Start() {
-            InitializeGrid();
-        }
-
-        public void InitializeGrid() {
-            var pivot = Size * Vector2Int.one / 2;
+        public override void Initialize() {
+            var pivot = Vector2Int.zero; //Size * Vector2Int.one / 2;
             Nodes = new Node[SizeX, SizeY];
 
             for (int x = 0; x < SizeX; x++) {
                 for (int y = 0; y < SizeY; y++) {
                     bool walkable = Random.Range(0f, 1f) > obstacleChance;
-                    Nodes[x, y] = new Node(walkable, new Vector2Int(x, y) - pivot);
+                    Nodes[x, y] = new Node(new Vector2Int(x, y) - pivot, walkable);
                 }
             }
         }
@@ -33,17 +29,17 @@ namespace DG_Pack.Pathfinding {
         public override Node GetNode(Vector2Int cell) => IsPositionValid(cell) ? Nodes[cell.x, cell.y] : null;
 
 
-        public bool IsPositionWalkable(Vector2Int gridPosition) =>
-            IsPositionValid(gridPosition) && Nodes[gridPosition.x, gridPosition.y].IsWalkable;
+        public override bool IsPositionWalkable(Vector2Int cell) =>
+            IsPositionValid(cell) && Nodes[cell.x, cell.y].IsWalkable;
 
-        public Vector2Int WorldToGridPosition(Vector3 worldPos) =>
+        public override Vector2Int WorldToGridPosition(Vector3 worldPos) =>
             new(Mathf.RoundToInt(worldPos.x), Mathf.RoundToInt(worldPos.y));
 
         private bool IsPositionValid(Vector2Int cell) =>
             cell.x >= 0 && cell.x < SizeX &&
             cell.y >= 0 && cell.y < SizeY;
 
-        public Vector3 GridToWorldPosition(Vector2Int gridPos) => new(gridPos.x, gridPos.y, 0);
+        public override Vector3 GridToWorldPosition(Vector2Int cell) => new(cell.x, cell.y, 0);
 
         private void OnDrawGizmos() {
             if (Nodes == null) return;

@@ -4,6 +4,13 @@ using Random = UnityEngine.Random;
 
 namespace DG_Pack.Base {
     public static class VectorEx {
+        public static Vector2Int[] Direction4D = {
+            new(0, 1),
+            new(1, 0),
+            new(0, -1),
+            new(-1, 0),
+        };
+
         public static Vector3 To3(this Vector2 v, float z) => new(v.x, v.y, z);
         public static Vector3 To3(this Vector3 v, float z) => new(v.x, v.y, z);
 

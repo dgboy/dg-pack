@@ -11,20 +11,19 @@ namespace DG_Pack.Pathfinding {
 
         private Grid _unityGrid;
         private BoundsInt _bounds;
-        private Node[,] Grid { get; set; }
+        private Node[,] Nodes { get; set; }
 
         public override Vector2Int Size => new(_bounds.size.x, _bounds.size.y);
         public override int SizeX => _bounds.size.x;
         public override int SizeY => _bounds.size.y;
 
-        private void Start() => Initialize();
 
-        private void Initialize() {
+
+        public override void Initialize() {
             _unityGrid = GetComponent<Grid>();
             _bounds = obstacleTilemap.cellBounds;
 
-            // 2. Инициализируем сетку
-            Grid = new Node[_bounds.size.x, _bounds.size.y];
+            Nodes = new Node[_bounds.size.x, _bounds.size.y];
 
             // 3. Заполняем сетку данными
             for (int x = 0; x < _bounds.size.x; x++) {
@@ -32,19 +31,20 @@ namespace DG_Pack.Pathfinding {
                     var cellPosition = new Vector3Int(_bounds.x + x, _bounds.y + y, _bounds.z);
 
                     // 4. Проверяем коллайдеры в ячейке
-                    var worldPos = _unityGrid.CellToWorld(cellPosition);
-                    bool hasCollider = CheckCollisionAtPosition(worldPos);
-
+                    var shift = Vector3.one * 0.1f; // коллайдер слегка задевает проходимые узлы тоже
+                    var cellToWorld = _unityGrid.CellToWorld(cellPosition) + shift;
+                    bool hasCollider = CheckCollisionAtPosition(cellToWorld);
                     // 5. Проверяем наличие тайла
                     bool hasTile = obstacleTilemap.HasTile(cellPosition);
-                    Grid[x, y] = new Node(isWalkable: !hasCollider && !hasTile, position: new Vector2Int(x, y));
+
+                    Nodes[x, y] = new Node(new Vector2Int(x, y), !hasCollider && !hasTile);
                 }
             }
         }
 
         private bool CheckCollisionAtPosition(Vector3 worldPos) {
             // Проверяем коллайдеры в радиусе 0.1 единицы
-            var hit = Physics2D.OverlapCircle(worldPos, 0.1f, obstacleLayer);
+            var hit = Physics2D.OverlapCircle(worldPos, 0.01f, obstacleLayer);
             return hit != null && hit.gameObject.CompareTag("Walls");
         }
 
@@ -52,21 +52,23 @@ namespace DG_Pack.Pathfinding {
             if (!IsPositionValid(cell))
                 return null;
 
-            int x = cell.x - _bounds.x;
-            int y = cell.y - _bounds.y;
+            int x = cell.x;
+            int y = cell.y;
 
-            if (x < 0 || x >= Grid.GetLength(0) || y < 0 || y >= Grid.GetLength(1))
+            if (x < 0 || x >= Nodes.GetLength(0) || y < 0 || y >= Nodes.GetLength(1))
                 return null;
 
-            return Grid[x, y];
+            return Nodes[x, y];
         }
 
-        public Vector2Int WorldToGridPosition(Vector3 worldPos) {
+        public override bool IsPositionWalkable(Vector2Int cell) =>
+            IsPositionValid(cell) && Nodes[cell.x, cell.y].IsWalkable;
+        public override Vector2Int WorldToGridPosition(Vector3 worldPos) {
             var cell = _unityGrid.WorldToCell(worldPos);
             return new Vector2Int(cell.x - _bounds.x, cell.y - _bounds.y);
         }
-        private Vector3 GridToWorldPosition(Vector2Int gridPos) {
-            var cellPosition = new Vector3Int(_bounds.x + gridPos.x, _bounds.y + gridPos.y, _bounds.z);
+        public override Vector3 GridToWorldPosition(Vector2Int cell) {
+            var cellPosition = new Vector3Int(_bounds.x + cell.x, _bounds.y + cell.y, _bounds.z);
             return _unityGrid.CellToWorld(cellPosition) + _unityGrid.cellSize / 2f;
         }
 
@@ -76,11 +78,11 @@ namespace DG_Pack.Pathfinding {
 
 
         private void OnDrawGizmos() {
-            if (Grid == null) return;
+            if (Nodes == null) return;
 
             const float scale = 0.9f;
 
-            foreach (var node in Grid) {
+            foreach (var node in Nodes) {
                 Gizmos.color = (node.IsWalkable ? Color.white : Color.red).Alpha(0.5f);
                 var pos = GridToWorldPosition(node.Position);
 
