@@ -31,6 +31,10 @@ namespace DG_Pack.Pathfinding {
 
         public override bool IsWalkable(Vector2Int cell) =>
             IsPositionValid(cell) && Nodes[cell.x, cell.y].IsWalkable;
+        public override bool IsWalkable(Vector3 position) {
+            var cell = PositionToCell(position);
+            return IsPositionValid(cell) && Nodes[cell.x, cell.y].IsWalkable;
+        }
 
         public override Vector2Int PositionToCell(Vector3 position) =>
             new(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y));
