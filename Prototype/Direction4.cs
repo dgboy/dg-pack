@@ -17,6 +17,13 @@ namespace DG_Pack.Prototype {
             Direction4.Up => Vector2.up,
             _ => throw new ArgumentOutOfRangeException(nameof(dir), dir, null),
         };
+        public static Vector2Int ToVector2Int(this Direction4 dir) => dir switch {
+            Direction4.Down => Vector2Int.down,
+            Direction4.Left => Vector2Int.left,
+            Direction4.Right => Vector2Int.right,
+            Direction4.Up => Vector2Int.up,
+            _ => throw new ArgumentOutOfRangeException(nameof(dir), dir, null),
+        };
         public static Vector3 ToVector3(this Direction4 dir) => dir switch {
             Direction4.Down => Vector3.down,
             Direction4.Left => Vector3.left,
@@ -41,10 +48,9 @@ namespace DG_Pack.Prototype {
                     : Direction4.Up;
         public static Direction4 From(this Vector2Int dir) => From((Vector2)dir);
 
-        public static Vector2Int Random(this Direction4 dir) {
-            int x = UnityEngine.Random.Range(-1, 2);
-            int y = x == 0 ? UnityEngine.Random.Range(-1, 2) : 0;
-            return new Vector2Int(x, y);
+        public static Vector2Int Random() {
+            var x = (Direction4)UnityEngine.Random.Range(0, 4);
+            return x.ToVector2Int();
         }
     }
 }
