@@ -81,10 +81,10 @@ namespace DG_Pack.Helpers {
         }
 
 
-        public static void SetPositions(this LineRenderer line, Vector2[] points) {
+        public static void SetPositions(this LineRenderer line, Vector2[] points, Vector3 offset) {
             var positions = new Vector3[points.Length];
             for (int i = 0; i < points.Length; i++) {
-                positions[i] = new Vector3(points[i].x, points[i].y);
+                positions[i] = new Vector3(points[i].x, points[i].y) + offset;
                 //positions[i + ((i == 2) ? 1 : (i == 3) ? -1 : 0)] = new Vector3(points[i].x, points[i].y);
             }
 
