@@ -1,6 +1,5 @@
 ﻿using DG_Pack.Services.Log;
 using UnityEngine;
-using UnityEngine;
 
 namespace DG_Pack.Prototype {
     public class MoveToCell : MonoBehaviour {
