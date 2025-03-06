@@ -41,7 +41,7 @@ namespace DG_Pack.Pathfinding {
 
                 // Получаем соседние узлы
                 foreach (var neighbour in GetNeighbours(currentNode)) {
-                    if (neighbour is { IsWalkable: true } && !closedSet.Contains(neighbour))
+                    if (neighbour is { walkable: true } && !closedSet.Contains(neighbour))
                         TryCostNeighbourNode(neighbour, currentNode, openSet, targetNode);
                 }
             }
@@ -53,7 +53,7 @@ namespace DG_Pack.Pathfinding {
             for (int i = 1; i < set.Count; i++) {
                 if (
                     set[i].FCost < currentNode.FCost ||
-                    set[i].FCost == currentNode.FCost && set[i].HCost < currentNode.HCost
+                    set[i].FCost == currentNode.FCost && set[i].hCost < currentNode.hCost
                 ) {
                     currentNode = set[i];
                 }
@@ -65,8 +65,8 @@ namespace DG_Pack.Pathfinding {
             var neighbours = new List<Node>();
 
             foreach (var dir in VectorEx.Direction4D) {
-                int x = node.Position.x + dir.x;
-                int y = node.Position.y + dir.y;
+                int x = node.position.x + dir.x;
+                int y = node.position.y + dir.y;
                 var offset = Vector2Int.zero; //-Grid.Size / 2;
 
 
@@ -77,14 +77,14 @@ namespace DG_Pack.Pathfinding {
             return neighbours;
         }
         private static void TryCostNeighbourNode(Node neighbour, Node current, List<Node> openSet, Node targetNode) {
-            int newMovementCostToNeighbour = current.GCost + GetDistance(current, neighbour);
+            int newMovementCostToNeighbour = current.gCost + GetDistance(current, neighbour);
 
-            if (newMovementCostToNeighbour >= neighbour.GCost && openSet.Contains(neighbour))
+            if (newMovementCostToNeighbour >= neighbour.gCost && openSet.Contains(neighbour))
                 return;
 
-            neighbour.GCost = newMovementCostToNeighbour;
-            neighbour.HCost = GetDistance(neighbour, targetNode);
-            neighbour.Parent = current;
+            neighbour.gCost = newMovementCostToNeighbour;
+            neighbour.hCost = GetDistance(neighbour, targetNode);
+            neighbour.parent = current;
 
             if (!openSet.Contains(neighbour))
                 openSet.Add(neighbour);
@@ -96,8 +96,8 @@ namespace DG_Pack.Pathfinding {
             var currentNode = endNode;
 
             while (currentNode != startNode) {
-                path.Add(Grid.CellToPosition(currentNode.Position));
-                currentNode = currentNode.Parent;
+                path.Add(Grid.CellToPosition(currentNode.position));
+                currentNode = currentNode.parent;
             }
 
             path.Reverse();
@@ -105,8 +105,8 @@ namespace DG_Pack.Pathfinding {
         }
         private static int GetDistance(Node a, Node b) {
             // Манхэттенское расстояние
-            int dstX = Mathf.Abs(a.Position.x - b.Position.x);
-            int dstY = Mathf.Abs(a.Position.y - b.Position.y);
+            int dstX = Mathf.Abs(a.position.x - b.position.x);
+            int dstY = Mathf.Abs(a.position.y - b.position.y);
             return dstX + dstY;
         }
     }

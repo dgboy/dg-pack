@@ -62,10 +62,10 @@ namespace DG_Pack.Pathfinding {
         }
 
         public override bool IsWalkable(Vector2Int cell) =>
-            IsPositionValid(cell) && Nodes[cell.x, cell.y].IsWalkable;
+            IsPositionValid(cell) && Nodes[cell.x, cell.y].walkable;
         public override bool IsWalkable(Vector3 position) {
             var cell = PositionToCell(position);
-            return IsPositionValid(cell) && Nodes[cell.x, cell.y].IsWalkable;
+            return IsPositionValid(cell) && Nodes[cell.x, cell.y].walkable;
         }
         public override Vector2Int PositionToCell(Vector3 position) {
             var cell = _unityGrid.WorldToCell(position);
@@ -87,11 +87,11 @@ namespace DG_Pack.Pathfinding {
             const float scale = 0.9f;
 
             foreach (var node in Nodes) {
-                Gizmos.color = (node.IsWalkable ? Color.white : Color.red).Alpha(0.5f);
-                var pos = CellToPosition(node.Position);
+                Gizmos.color = (node.walkable ? Color.white : Color.red).Alpha(0.5f);
+                var pos = CellToPosition(node.position);
 
 
-                if (node.IsWalkable)
+                if (node.walkable)
                     Gizmos.DrawCube(pos, Vector3.one * scale);
                 else
                     Gizmos.DrawWireCube(pos, Vector3.one * scale);

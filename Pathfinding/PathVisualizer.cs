@@ -60,7 +60,7 @@ namespace DG_Pack.Pathfinding {
             var targetNode = Grid.GetNode(_lastTarget);
 
             if (targetNode != null)
-                Gizmos.DrawSphere(Grid.CellToPosition(targetNode.Position), 0.2f);
+                Gizmos.DrawSphere(Grid.CellToPosition(targetNode.position), 0.2f);
         }
     }
 }
