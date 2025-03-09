@@ -14,8 +14,6 @@ namespace DG_Pack.Services.Scene {
 
 
         public async Task Load(string scene) {
-            if (Current == scene) return;
-
             LoadingCurtain.Show();
             var operation = SceneManager.LoadSceneAsync(scene);
 
