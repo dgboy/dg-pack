@@ -11,8 +11,6 @@ namespace DG_Pack.Pathfinding {
 
         public float obstacleChance = 0.2f;
 
-        private Node[,] Nodes { get; set; }
-
 
         public override void Initialize() {
             var pivot = Vector2Int.zero; //Size * Vector2Int.one / 2;

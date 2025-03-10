@@ -14,7 +14,6 @@ namespace DG_Pack.Pathfinding {
 
         private Grid _unityGrid;
         private BoundsInt _bounds;
-        private Node[,] Nodes { get; set; }
 
         public override Vector2Int Size => new(_bounds.size.x, _bounds.size.y);
         public override int SizeX => _bounds.size.x;
