@@ -4,10 +4,13 @@ using UnityEngine.Tilemaps;
 
 namespace DG_Pack.Pathfinding {
     [RequireComponent(typeof(Grid))]
-    public class GridManager2 : GridManagerBase {
+    public class TilemapGridManager : GridManagerBase {
         [SerializeField] private Tilemap obstacleTilemap;
         [SerializeField] private CompositeCollider2D levelCollider;
         [SerializeField] private LayerMask obstacleLayer;
+
+        public float gizmoNodeScale = 0.9f;
+        public float gizmoNodeAlpha = 0.5f;
 
         private Grid _unityGrid;
         private BoundsInt _bounds;
@@ -16,7 +19,6 @@ namespace DG_Pack.Pathfinding {
         public override Vector2Int Size => new(_bounds.size.x, _bounds.size.y);
         public override int SizeX => _bounds.size.x;
         public override int SizeY => _bounds.size.y;
-
 
 
         public override void Initialize() {
@@ -84,17 +86,14 @@ namespace DG_Pack.Pathfinding {
         private void OnDrawGizmos() {
             if (Nodes == null) return;
 
-            const float scale = 0.9f;
-
             foreach (var node in Nodes) {
-                Gizmos.color = (node.walkable ? Color.white : Color.red).Alpha(0.5f);
+                Gizmos.color = (node.walkable ? Color.white : Color.red).Alpha(gizmoNodeAlpha);
                 var pos = CellToPosition(node.position);
 
-
                 if (node.walkable)
-                    Gizmos.DrawCube(pos, Vector3.one * scale);
+                    Gizmos.DrawCube(pos, Vector3.one * gizmoNodeScale);
                 else
-                    Gizmos.DrawWireCube(pos, Vector3.one * scale);
+                    Gizmos.DrawWireCube(pos, Vector3.one * gizmoNodeScale);
             }
         }
     }
